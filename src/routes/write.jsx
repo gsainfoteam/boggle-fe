@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Layout from "../component/Layout";
 import React from "react";
+import api from "../api/api";
 
 export const Route = createFileRoute("/write")({
   component: WriteComponent,
@@ -10,6 +11,10 @@ function WriteComponent() {
   return (
     <Layout>
       <form
+        onSubmit={() => {
+          event.preventDefault();
+          api();
+        }}
         className="
         max-w-[420px] 
         mx-auto 
