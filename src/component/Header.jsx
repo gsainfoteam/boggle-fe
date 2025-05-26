@@ -1,39 +1,89 @@
 import { useRouter } from "@tanstack/react-router";
 
-const headerStyle = {
-  height: 56,
-  background: "#fff",
-  borderBottom: "1px solid #eee",
-  display: "flex",
-  alignItems: "center",
-  padding: "0 24px",
-  position: "sticky",
-  top: 0,
-  zIndex: 10,
-};
-
 export default function Header() {
   const router = useRouter();
 
   return (
-    <header style={headerStyle}>
-      <img src="/logo.png" alt="logo" style={{ height: 32, marginRight: 8 }} />
-      <b style={{ fontSize: 22, marginRight: 32 }}>BOGGLE</b>
+    <header
+      className="
+      h-[55px]
+      bg-white 
+      justify-between
+      py-[8px]
+      px-[16px]
+      // border-b 
+      // border-gray-200 
+      // flex 
+      // items-center
+      // sticky 
+      // top-0 
+      // z-10
+    "
+    >
+      <img
+        src="/logo.png"
+        alt="logo"
+        className="
+          h-8 
+          mr-2
+        "
+      />
+      <b
+        className="
+        text-[22px] 
+        mr-8
+      "
+      >
+        BOGGLE
+      </b>
+
       <input
         placeholder="검색"
-        style={{ flex: 1, maxWidth: 400, marginRight: 16, padding: 6 }}
+        className="
+          flex-1 
+          w-[531px] 
+          h-[39px]
+          rounded-l-[30px] 
+          border-[1px]
+          border-[#E8E8E8]
+          py-[10px] 
+          px-[20px]
+          gap-[10px]
+        "
       />
+
+      <button
+        className="
+        w-[69px] 
+        h-[39px] 
+        rounded-r-[20px]
+        border-r-[1px]
+        border-b-[1px]
+        border-t-[1px]
+        border-l-none
+        border-[#E8E8E8]
+        pr-[25px]
+        pl-[20px]
+        gap-[10px]
+        bg-[#F5F5F7]
+      "
+      >
+        🔍
+      </button>
+
       <button
         onClick={() => router.navigate({ to: "/login" })}
-        style={{
-          marginLeft: "auto",
-          padding: "6px 16px",
-          borderRadius: 6,
-          border: "1px solid #ddd",
-          background: "#fff",
-          cursor: "pointer",
-          fontSize: 14,
-        }}
+        className="
+          ml-auto 
+          px-4 
+          py-1.5 
+          rounded-md 
+          border 
+          border-gray-300 
+          bg-white 
+          cursor-pointer 
+          text-sm
+        "
       >
         로그인
       </button>

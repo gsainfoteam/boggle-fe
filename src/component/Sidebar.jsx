@@ -11,40 +11,59 @@ export default function Sidebar() {
   ];
 
   return (
-    <nav style={{ padding: 24 }}>
+    <nav
+      className="
+      p-6
+    "
+    >
       {navItems.map((item) => (
         <button
           key={item.to}
           onClick={() => router.navigate({ to: item.to })}
-          style={{
-            display: "block",
-            width: "100%",
-            padding: "10px 0",
-            border: "none",
-            borderRadius: 8,
-            background: currentPath === item.to ? "#e5e5e5" : "transparent",
-            color: currentPath === item.to ? "#222" : "#3366cc",
-            fontWeight: 500,
-            fontSize: 15,
-            marginBottom: 12,
-            cursor: "pointer",
-            transition: "background 0.2s, color 0.2s",
-            textAlign: "left",
-          }}
+          className={`
+            block 
+            w-full 
+            py-2.5 
+            border-none 
+            rounded-lg 
+            ${
+              currentPath === item.to
+                ? "bg-gray-200 text-gray-800"
+                : "bg-transparent text-blue-600"
+            } 
+            font-medium 
+            text-[15px] 
+            mb-3 
+            cursor-pointer 
+            transition-colors 
+            text-left
+          `}
         >
           {item.label}
         </button>
       ))}
       <div>
-        <b style={{ fontSize: 15 }}>카테고리</b>
-        <ul style={{ listStyle: "none", padding: 0, marginTop: 8 }}>
-          <li style={{ fontSize: 15 }}>전체</li>
-          <li style={{ fontSize: 15 }}>홈메</li>
-          <li style={{ fontSize: 15 }}>공동구매</li>
-          <li style={{ fontSize: 15 }}>프로젝트</li>
-          <li style={{ fontSize: 15 }}>공부</li>
-          <li style={{ fontSize: 15 }}>취미</li>
-          <li style={{ fontSize: 15 }}>배달</li>
+        <b
+          className="
+          text-[15px]
+        "
+        >
+          카테고리
+        </b>
+        <ul
+          className="
+          list-none 
+          p-0 
+          mt-2
+        "
+        >
+          <li className="text-[15px]">전체</li>
+          <li className="text-[15px]">홈메</li>
+          <li className="text-[15px]">공동구매</li>
+          <li className="text-[15px]">프로젝트</li>
+          <li className="text-[15px]">공부</li>
+          <li className="text-[15px]">취미</li>
+          <li className="text-[15px]">배달</li>
         </ul>
       </div>
     </nav>

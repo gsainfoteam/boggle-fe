@@ -1,51 +1,54 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-const layoutStyle = {
-  display: "flex",
-  height: "100vh",
-  flexDirection: "column",
-  width: "100vw",
-  minWidth: 0,
-};
-
-const mainAreaStyle = {
-  display: "flex",
-  flex: 1,
-  minHeight: 0,
-  width: "100%",
-  minWidth: 0,
-};
-
-const sidebarStyle = {
-  width: 220,
-  flexShrink: 0,
-  borderRight: "1px solid #eee",
-  background: "#fff",
-  position: "sticky",
-  top: 0,
-  height: "100vh",
-  zIndex: 2,
-};
-
-const contentStyle = {
-  flex: 1,
-  overflowY: "auto",
-  background: "#fafbfc",
-  padding: 32,
-  width: "100%",
-  boxSizing: "border-box",
-};
-
 export default function Layout({ children }) {
   return (
-    <div style={layoutStyle}>
+    <div
+      className="
+      flex 
+      flex-col 
+      h-screen 
+      w-screen 
+      min-w-0
+    "
+    >
       <Header />
-      <div style={mainAreaStyle}>
-        <div style={sidebarStyle}>
+      <div
+        className="
+        flex 
+        flex-1 
+        min-h-0 
+        w-full 
+        min-w-0
+      "
+      >
+        <div
+          className="
+          w-[220px] 
+          flex-shrink-0 
+          border-r 
+          border-gray-200 
+          bg-white 
+          sticky 
+          top-0 
+          h-screen 
+          z-10
+        "
+        >
           <Sidebar />
         </div>
-        <main style={contentStyle}>{children}</main>
+        <main
+          className="
+          flex-1 
+          overflow-y-auto 
+          bg-gray-50 
+          p-8 
+          w-full 
+          box-border
+        "
+        >
+          {children}
+        </main>
       </div>
     </div>
   );

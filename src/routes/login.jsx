@@ -8,94 +8,109 @@ export const Route = createFileRoute("/login")({
 function LoginComponent() {
   return (
     <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "#f8f9fa",
-      }}
+      className="
+      w-screen 
+      h-screen 
+      flex 
+      justify-center 
+      items-center 
+      bg-gray-50
+    "
     >
       <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
+        className="
+        flex 
+        flex-col 
+        items-center
+      "
       >
         <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginBottom: 32,
-          }}
+          className="
+          flex 
+          items-center 
+          mb-8
+        "
         >
           <img
             src="/logo.png"
             alt="logo"
-            style={{ height: 40, marginRight: 8 }}
+            className="
+              h-10 
+              mr-2
+            "
           />
-          <h1 style={{ fontSize: 32, margin: 0 }}>BOGGLE</h1>
+          <h1
+            className="
+            text-3xl 
+            m-0
+          "
+          >
+            BOGGLE
+          </h1>
         </div>
         <div
-          style={{
-            width: "100%",
-            maxWidth: 360,
-            display: "flex",
-            flexDirection: "column",
-            gap: 12,
-          }}
+          className="
+          w-full 
+          max-w-[360px] 
+          flex 
+          flex-col 
+          gap-3
+        "
         >
           <input
             type="text"
             placeholder="아이디"
-            style={{
-              width: "100%",
-              padding: "12px 16px",
-              fontSize: 15,
-              border: "1px solid #ddd",
-              borderRadius: 8,
-              background: "#fff",
-            }}
+            className="
+              w-full 
+              px-4 
+              py-3 
+              text-[15px] 
+              border 
+              border-gray-300 
+              rounded-lg 
+              bg-white
+            "
           />
           <input
             type="password"
             placeholder="비밀번호"
-            style={{
-              width: "100%",
-              padding: "12px 16px",
-              fontSize: 15,
-              border: "1px solid #ddd",
-              borderRadius: 8,
-              background: "#fff",
-            }}
+            className="
+              w-full 
+              px-4 
+              py-3 
+              text-[15px] 
+              border 
+              border-gray-300 
+              rounded-lg 
+              bg-white
+            "
           />
           <button
-            style={{
-              width: "100%",
-              padding: "12px",
-              fontSize: 15,
-              background: "#4a90ff",
-              color: "#fff",
-              border: "none",
-              borderRadius: 8,
-              cursor: "pointer",
-              marginTop: 4,
-            }}
+            className="
+            w-full 
+            py-3 
+            text-[15px] 
+            bg-blue-500 
+            text-white 
+            border-none 
+            rounded-lg 
+            cursor-pointer 
+            mt-1
+          "
           >
             로그인
           </button>
           <button
-            style={{
-              width: "100%",
-              padding: "12px",
-              fontSize: 15,
-              background: "#f8f9fa",
-              border: "1px solid #ddd",
-              borderRadius: 8,
-              cursor: "pointer",
-            }}
+            className="
+            w-full 
+            py-3 
+            text-[15px] 
+            bg-gray-50 
+            border 
+            border-gray-300 
+            rounded-lg 
+            cursor-pointer
+          "
           >
             회원가입
           </button>
