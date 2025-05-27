@@ -1,8 +1,20 @@
-import Card from "./Card";
-
-const dummy = Array(9).fill(0);
+import { useEffect, useState } from 'react';
+import Card from './Card';
+import { getPosts } from '../api/post.js';
 
 export default function CardList() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      await getPosts().then((data) => {
+        setPosts(data.posts);
+      });
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <div
       className="
@@ -13,8 +25,8 @@ export default function CardList() {
       box-border
     "
     >
-      {dummy.map((_, i) => (
-        <Card key={i} />
+      {posts.map((post, i) => (
+        <Card key={i} post={post} />
       ))}
     </div>
   );
