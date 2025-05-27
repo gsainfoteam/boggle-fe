@@ -1,4 +1,4 @@
-export default function Card() {
+export default function Card({ post }) {
   return (
     <div
       className="
@@ -26,9 +26,9 @@ export default function Card() {
         text-green-600
       "
       >
-        ● 제목
+        ● {post.title}
       </div>
-      <div>간략한 설명</div>
+      <div>{post.content}</div>
       <div>
         <span
           className="
@@ -41,14 +41,14 @@ export default function Card() {
           mr-2
         "
         >
-          #공동구매
+          #{post.type}
         </span>
         <span
           className="
           text-xs
         "
         >
-          👤 NN/NN
+          👤 {post.participants.length}/{post.maxParticipants}
         </span>
       </div>
     </div>
