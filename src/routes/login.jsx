@@ -5,117 +5,128 @@ export const Route = createFileRoute("/login")({
   component: LoginComponent,
 });
 
-function LoginComponent() {
+function LoginForm() {
   return (
     <div
       className="
-      w-screen 
-      h-screen 
-      flex 
-      justify-center 
-      items-center 
-      bg-gray-50
-    "
+        flex 
+        flex-col 
+        gap-[15px]
+      "
     >
       <div
         className="
         flex 
-        flex-col 
-        items-center
+        items-center 
+        justify-center
+        w-[395.29px]
+        h-[173.46px]
+        gap-[5px]
       "
       >
-        <div
+        <img
+          src="/icons/boggle-logo.svg"
+          alt="BOGGLE logo"
           className="
-          flex 
-          items-center 
-          mb-8
+          h-[90px]
+          w-[76px]
+        "
+        />
+        <h1
+          className="
+          font-normal
+          text-[80px]
+          leading-[100%]
+          tracking-[0%]
         "
         >
-          <img
-            src="/logo.png"
-            alt="logo"
-            className="
-              h-10 
-              mr-2
-            "
-          />
-          <h1
-            className="
-            text-3xl 
-            m-0
-          "
-          >
-            BOGGLE
-          </h1>
-        </div>
-        <div
-          className="
-          w-full 
-          max-w-[360px] 
-          flex 
-          flex-col 
-          gap-3
-        "
-        >
-          <input
-            type="text"
-            placeholder="아이디"
-            className="
-              w-full 
-              px-4 
-              py-3 
-              text-[15px] 
-              border 
-              border-gray-300 
-              rounded-lg 
-              bg-white
-            "
-          />
-          <input
-            type="password"
-            placeholder="비밀번호"
-            className="
-              w-full 
-              px-4 
-              py-3 
-              text-[15px] 
-              border 
-              border-gray-300 
-              rounded-lg 
-              bg-white
-            "
-          />
-          <button
-            className="
-            w-full 
-            py-3 
-            text-[15px] 
-            bg-blue-500 
-            text-white 
-            border-none 
-            rounded-lg 
-            cursor-pointer 
-            mt-1
-          "
-          >
-            로그인
-          </button>
-          <button
-            className="
-            w-full 
-            py-3 
-            text-[15px] 
-            bg-gray-50 
-            border 
-            border-gray-300 
-            rounded-lg 
-            cursor-pointer
-          "
-          >
-            회원가입
-          </button>
-        </div>
+          BOGGLE
+        </h1>
       </div>
+      <button
+        className="
+          w-full 
+          px-4 
+          py-3 
+          text-[15px]
+          rounded-[10px]
+          bg-[#E5EDFA]
+          text-center
+          cursor-pointer
+        "
+      >
+        아이디
+      </button>
+      <button
+        className="
+          w-full 
+          px-4 
+          py-3 
+          text-[15px]
+          rounded-[10px]
+          bg-[#E5EDFA]
+          text-center
+          cursor-pointer
+        "
+      >
+        비밀번호
+      </button>
+      <button
+        className="
+          w-full 
+          py-3 
+          text-[15px] 
+          bg-[#4B7EFF]
+          text-white
+          rounded-[10px]
+          cursor-pointer 
+        "
+      >
+        로그인
+      </button>
+      <p
+        className="
+          text-center
+          text-[15px]
+          cursor-pointer
+        "
+      >
+        회원가입
+      </p>
+    </div>
+  );
+}
+
+function LoginWrapper() {
+  return (
+    <div
+      className="
+        flex
+        flex-col
+        items-center
+        gap-[60px]
+        w-[535px]
+        h-fit
+      "
+    >
+      <LoginForm />
+    </div>
+  );
+}
+
+function LoginComponent() {
+  return (
+    <div
+      className="
+        w-[screen] 
+        h-screen 
+        flex 
+        justify-center 
+        items-center 
+        bg-white
+      "
+    >
+      <LoginWrapper />
     </div>
   );
 }
