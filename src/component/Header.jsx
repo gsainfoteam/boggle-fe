@@ -30,8 +30,8 @@ export default function Header() {
         "
       >
         <img
-          src="/logo.png"
-          alt="logo"
+          src="/icons/boggle-logo.svg"
+          alt="BOGGLE logo"
           className="
             h-[34px]
             w-[34px]
