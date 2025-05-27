@@ -58,7 +58,7 @@ export default function Sidebar() {
         "
         >
           <li className="text-[15px]">전체</li>
-          <li className="text-[15px]">홈메</li>
+          <li className="text-[15px]">룸메</li>
           <li className="text-[15px]">공동구매</li>
           <li className="text-[15px]">프로젝트</li>
           <li className="text-[15px]">공부</li>

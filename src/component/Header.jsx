@@ -6,7 +6,8 @@ export default function Header() {
   return (
     <header
       className="
-        h-[55px]
+        w-full
+        h-fit
         bg-white
         justify-between
         items-center
@@ -54,13 +55,15 @@ export default function Header() {
         className="
           flex
           items-center
+          w-[600px]
+          h-fit
         "
       >
         <input
           placeholder="검색"
           className="
-            w-[350px]
-            h-[39px]
+            w-full
+            h-fit
             rounded-l-[30px]
             border-[1px]
             border-[#E8E8E8]
@@ -71,7 +74,7 @@ export default function Header() {
         />
         <button
           className="
-            w-[69px]
+            w-fit
             h-[39px]
             rounded-r-[20px]
             border-r-[1px]
@@ -92,6 +95,13 @@ export default function Header() {
       <button
         onClick={() => router.navigate({ to: "/login" })}
         className="
+          w-[74px]
+          h-[24px]
+          gap-[8px]
+          font-normal
+          text-[16px]
+          leading-[100%]
+          tracking-[0%]
           px-4
           py-1.5
           rounded-md
@@ -103,7 +113,8 @@ export default function Header() {
           text-blue-600
           flex
           items-center
-          gap-1
+          
+        
         "
       >
         <span className="material-icons">😄</span>
