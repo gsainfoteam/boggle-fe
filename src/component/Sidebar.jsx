@@ -5,9 +5,10 @@ export default function Sidebar() {
   const currentPath = router.state.location.pathname;
 
   const navItems = [
-    { label: "홈", to: "/" },
-    { label: "게시글 작성하기", to: "/write" },
-    { label: "채팅", to: "/chat" },
+    { label: "홈", to: "/", icon: "/icons/home-simple-door.svg" },
+    { label: "게시글 작성하기", to: "/write", icon: "/icons/text.svg" },
+    { label: "채팅", to: "/chat", icon: "/icons/Chat2.svg" },
+    { label: "마이 페이지", to: "/chat", icon: "/icons/user-circle.svg" },
   ];
 
   return (
@@ -21,7 +22,9 @@ export default function Sidebar() {
           key={item.to}
           onClick={() => router.navigate({ to: item.to })}
           className={`
-            block 
+            flex
+            items-center
+            gap-2
             w-full 
             py-2.5 
             border-none 
@@ -39,6 +42,7 @@ export default function Sidebar() {
             text-left
           `}
         >
+          <img src={item.icon} alt={`${item.label} icon`} className="w-5 h-5" />
           {item.label}
         </button>
       ))}
