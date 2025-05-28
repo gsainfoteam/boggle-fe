@@ -212,7 +212,7 @@ function MyProfileComponent() {
                       mr-2
                     "
                   >
-                    #{post.type}
+                    #{post.postType}
                   </span>
                   <span
                     className="
