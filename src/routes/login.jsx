@@ -1,11 +1,24 @@
-import { createFileRoute } from "@tanstack/react-router";
-import React from "react";
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import React from 'react';
+import { login } from '../api/auth/login';
 
-export const Route = createFileRoute("/login")({
+export const Route = createFileRoute('/login')({
   component: LoginComponent,
 });
 
 function LoginForm() {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const navigate = useNavigate();
+
+  const submitLogin = async (e) => {
+    e.preventDefault();
+    const res = await login(email, password);
+    localStorage.setItem('accessToken', res.access_token);
+    document.cookie = `refreshToken=${res.refresh_token}; path=/;`;
+    navigate({ to: '/' });
+  };
+
   return (
     <div
       className="
@@ -43,7 +56,11 @@ function LoginForm() {
           BOGGLE
         </h1>
       </div>
-      <button
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="아이디"
         className="
           w-full 
           px-4 
@@ -54,10 +71,12 @@ function LoginForm() {
           text-center
           cursor-pointer
         "
-      >
-        아이디
-      </button>
-      <button
+      ></input>
+      <input
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="비밀번호"
         className="
           w-full 
           px-4 
@@ -68,10 +87,9 @@ function LoginForm() {
           text-center
           cursor-pointer
         "
-      >
-        비밀번호
-      </button>
+      ></input>
       <button
+        onClick={submitLogin}
         className="
           w-full 
           py-3 

@@ -3,7 +3,6 @@ export async function getPosts() {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
     },
   });
   if (!response.ok) {
