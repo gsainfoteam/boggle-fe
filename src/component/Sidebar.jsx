@@ -8,13 +8,15 @@ export default function Sidebar() {
     { label: "홈", to: "/", icon: "/icons/home-simple-door.svg" },
     { label: "게시글 작성하기", to: "/write", icon: "/icons/text.svg" },
     { label: "채팅", to: "/chat", icon: "/icons/Chat2.svg" },
-    { label: "마이 페이지", to: "/chat", icon: "/icons/user-circle.svg" },
+    { label: "마이 페이지", to: "/myprofile", icon: "/icons/user-circle.svg" },
   ];
 
   return (
     <nav
       className="
       p-6
+      bg-amber-300
+      h-full
     "
     >
       {navItems.map((item) => (

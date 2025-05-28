@@ -6,13 +6,9 @@ export default function CardList() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      await getPosts().then((data) => {
-        setPosts(data.posts);
-      });
-    };
-
-    fetchPosts();
+    getPosts().then((data) => {
+      setPosts(data.posts);
+    });
   }, []);
 
   return (

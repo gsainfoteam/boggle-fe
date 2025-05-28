@@ -30,8 +30,8 @@ export default function Layout({ children }) {
           border-gray-200 
           bg-white 
           sticky 
-          top-0 
-          h-screen 
+          top-[55px] 
+          h-[calc(100vh-55px)] 
           z-10
         "
         >
