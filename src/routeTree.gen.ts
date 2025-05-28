@@ -12,7 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as WriteImport } from './routes/write'
-import { Route as MyprofileImport } from './routes/myprofile'
+import { Route as MyProfileImport } from './routes/myProfile'
 import { Route as LoginImport } from './routes/login'
 import { Route as IndexImport } from './routes/index'
 
@@ -24,9 +24,9 @@ const WriteRoute = WriteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const MyprofileRoute = MyprofileImport.update({
-  id: '/myprofile',
-  path: '/myprofile',
+const MyProfileRoute = MyProfileImport.update({
+  id: '/myProfile',
+  path: '/myProfile',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -60,11 +60,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
-    '/myprofile': {
-      id: '/myprofile'
-      path: '/myprofile'
-      fullPath: '/myprofile'
-      preLoaderRoute: typeof MyprofileImport
+    '/myProfile': {
+      id: '/myProfile'
+      path: '/myProfile'
+      fullPath: '/myProfile'
+      preLoaderRoute: typeof MyProfileImport
       parentRoute: typeof rootRoute
     }
     '/write': {
@@ -82,14 +82,14 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/myprofile': typeof MyprofileRoute
+  '/myProfile': typeof MyProfileRoute
   '/write': typeof WriteRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/myprofile': typeof MyprofileRoute
+  '/myProfile': typeof MyProfileRoute
   '/write': typeof WriteRoute
 }
 
@@ -97,30 +97,30 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
-  '/myprofile': typeof MyprofileRoute
+  '/myProfile': typeof MyProfileRoute
   '/write': typeof WriteRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/myprofile' | '/write'
+  fullPaths: '/' | '/login' | '/myProfile' | '/write'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/myprofile' | '/write'
-  id: '__root__' | '/' | '/login' | '/myprofile' | '/write'
+  to: '/' | '/login' | '/myProfile' | '/write'
+  id: '__root__' | '/' | '/login' | '/myProfile' | '/write'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
-  MyprofileRoute: typeof MyprofileRoute
+  MyProfileRoute: typeof MyProfileRoute
   WriteRoute: typeof WriteRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
-  MyprofileRoute: MyprofileRoute,
+  MyProfileRoute: MyProfileRoute,
   WriteRoute: WriteRoute,
 }
 
@@ -136,7 +136,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/login",
-        "/myprofile",
+        "/myProfile",
         "/write"
       ]
     },
@@ -146,8 +146,8 @@ export const routeTree = rootRoute
     "/login": {
       "filePath": "login.jsx"
     },
-    "/myprofile": {
-      "filePath": "myprofile.jsx"
+    "/myProfile": {
+      "filePath": "myProfile.jsx"
     },
     "/write": {
       "filePath": "write.jsx"
