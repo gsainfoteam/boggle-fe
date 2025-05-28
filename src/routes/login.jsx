@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import React from 'react';
 import { login } from '../api/auth/login';
 
@@ -9,10 +9,14 @@ export const Route = createFileRoute('/login')({
 function LoginForm() {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const navigate = useNavigate();
 
   const submitLogin = async (e) => {
     e.preventDefault();
     const res = await login(email, password);
+    localStorage.setItem('accessToken', res.access_token);
+    document.cookie = `refreshToken=${res.refresh_token}; path=/;`;
+    navigate({ to: '/' });
   };
 
   return (
