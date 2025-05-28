@@ -1,18 +1,14 @@
-import { useEffect, useState } from 'react';
-import Card from './Card';
-import { getPosts } from '../api/post.js';
+import { useEffect, useState } from "react";
+import Card from "./Card";
+import { getPosts } from "../api/post.js";
 
 export default function CardList() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      await getPosts().then((data) => {
-        setPosts(data.posts);
-      });
-    };
-
-    fetchPosts();
+    getPosts().then((data) => {
+      setPosts(data.posts);
+    });
   }, []);
 
   return (

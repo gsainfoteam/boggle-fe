@@ -8,7 +8,7 @@ export default function Header() {
       className="
         w-full
         h-[55px]
-        bg-white
+        bg-amber-600
         justify-between
         items-center
         py-[8px]

@@ -15,6 +15,8 @@ export default function Sidebar() {
     <nav
       className="
       p-6
+      bg-amber-300
+      h-full
     "
     >
       {navItems.map((item) => (
