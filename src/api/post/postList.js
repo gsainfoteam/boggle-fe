@@ -1,5 +1,5 @@
-export async function getPosts() {
-  const response = await fetch('/api/post?type=ALL&skip=0&take=12', {
+export async function getPosts(type) {
+  const response = await fetch(`/api/post?type=${type}&skip=0&take=12`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
