@@ -171,7 +171,7 @@ function MyProfileComponent() {
           >
             {user.posts.map((post) => (
               <div
-                key={post.id}
+                key={post.uuid}
                 className="
                   bg-white 
                   rounded-xl 

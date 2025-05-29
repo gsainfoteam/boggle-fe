@@ -21,8 +21,8 @@ export default function CardList() {
       box-border
     "
     >
-      {posts.map((post, i) => (
-        <Card key={i} post={post} />
+      {posts.map((post) => (
+        <Card key={post.uuid} post={post} />
       ))}
     </div>
   );
