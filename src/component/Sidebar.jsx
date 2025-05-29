@@ -27,9 +27,9 @@ export default function Sidebar() {
     배달: "/category icons/curtlery.svg",
   };
 
-  // 카테고리 버튼 정보 배열
+  // 카테고리 버튼 정보 배열 (type 값이 모두 다르게!)
   const categoryButtons = [
-    { label: "공동구매", type: "DELIVERY", icon: categoryIcons["공동구매"] },
+    { label: "공동구매", type: "GROUP", icon: categoryIcons["공동구매"] },
     { label: "공부", type: "STUDY", icon: categoryIcons["공부"] },
     { label: "룸메", type: "ROOMMATE", icon: categoryIcons["룸메"] },
     { label: "배달", type: "DELIVERY", icon: categoryIcons["배달"] },
@@ -63,7 +63,7 @@ export default function Sidebar() {
               p-[5px]
               border-none 
               rounded-[15px]
-              ${currentPath === item.to && !currentCategory ? "bg-[#B1C7FF] text-black" : "bg-transparent"} 
+              ${currentPath === item.to && (!currentCategory || currentCategory === "ALL") ? "bg-[#B1C7FF] text-black" : "bg-transparent"} 
               font-medium 
               text-[15px]
               cursor-pointer 
