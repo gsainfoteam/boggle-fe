@@ -1,22 +1,22 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import React from 'react';
-import { login } from '../api/auth/login';
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import React from "react";
+import { login } from "../api/auth/login";
 
-export const Route = createFileRoute('/login')({
+export const Route = createFileRoute("/login")({
   component: LoginComponent,
 });
 
 function LoginForm() {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
 
   const submitLogin = async (e) => {
     e.preventDefault();
     const res = await login(email, password);
-    localStorage.setItem('accessToken', res.access_token);
+    localStorage.setItem("accessToken", res.access_token);
     document.cookie = `refreshToken=${res.refresh_token}; path=/;`;
-    navigate({ to: '/' });
+    navigate({ to: "/" });
   };
 
   return (
@@ -58,7 +58,6 @@ function LoginForm() {
       </div>
       <input
         type="email"
-        value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="아이디"
         className="

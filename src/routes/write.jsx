@@ -1,20 +1,33 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Layout from "../component/Layout";
 import React from "react";
-import api from "../api/api";
-
+import { publishPost } from "../api/post/publishPost";
 export const Route = createFileRoute("/write")({
   component: WriteComponent,
 });
 
 function WriteComponent() {
+  const [title, setTitle] = React.useState("");
+  const [content, setContent] = React.useState("");
+  const [type, setType] = React.useState("");
+  const [maxParticipants, setMaxParticipants] = React.useState("");
+  const [deadline, setDeadline] = React.useState("");
+
+  const submitPublish = async (e) => {
+    e.preventDefault();
+    const res = await publishPost(
+      title,
+      content,
+      type,
+      maxParticipants,
+      deadline
+    );
+    console.log(res);
+  };
+
   return (
     <Layout>
       <form
-        onSubmit={() => {
-          event.preventDefault();
-          api();
-        }}
         className="
         max-w-[420px] 
         mx-auto 
@@ -43,6 +56,8 @@ function WriteComponent() {
           <p>
             <input
               type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
               className="
                 w-full 
                 text-[15px] 
@@ -64,6 +79,8 @@ function WriteComponent() {
           인원
           <p>
             <input
+              value={maxParticipants}
+              onChange={(e) => setMaxParticipants(e.target.value)}
               type="number"
               className="
                 w-[70px] 
@@ -86,6 +103,8 @@ function WriteComponent() {
           기간
           <p>
             <input
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
               type="text"
               className="
                 w-[90px] 
@@ -108,6 +127,8 @@ function WriteComponent() {
           내용
           <p>
             <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
               rows={6}
               className="
                 w-full 
@@ -131,7 +152,7 @@ function WriteComponent() {
           이미지 추가
           <p>
             <input
-              type="text"
+              type="file"
               className="
                 w-full 
                 text-[15px] 
@@ -153,6 +174,8 @@ function WriteComponent() {
           분류 태그
           <p>
             <input
+              value={type}
+              onChange={(e) => setType(e.target.value)}
               type="text"
               className="
                 w-[100px] 
@@ -166,7 +189,9 @@ function WriteComponent() {
             />
           </p>
         </label>
+
         <button
+          onClick={submitPublish}
           type="submit"
           className="
             mt-3.5 
