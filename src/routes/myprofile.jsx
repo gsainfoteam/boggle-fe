@@ -1,46 +1,26 @@
 import { createFileRoute } from "@tanstack/react-router";
 import Layout from "../component/Layout";
+import { getUser } from "../api/user/getUser";
+import React, { useEffect } from "react";
 
-export const Route = createFileRoute("/myProfile")({
+export const Route = createFileRoute("/myprofile")({
   component: MyProfileComponent,
 });
 
 function MyProfileComponent() {
-  // 더미 데이터 추가
-  const dummyPosts = [
-    {
-      id: 1,
-      title: "긴급한 설명",
-      content: "간략한 설명",
-      type: "공동구매",
-      participants: new Array(3),
-      maxParticipants: 5,
-    },
-    {
-      id: 2,
-      title: "긴급한 설명",
-      content: "간략한 설명",
-      type: "공동구매",
-      participants: new Array(2),
-      maxParticipants: 5,
-    },
-    {
-      id: 3,
-      title: "긴급한 설명",
-      content: "간략한 설명",
-      type: "공동구매",
-      participants: new Array(4),
-      maxParticipants: 5,
-    },
-    {
-      id: 4,
-      title: "긴급한 설명",
-      content: "간략한 설명",
-      type: "공동구매",
-      participants: new Array(1),
-      maxParticipants: 5,
-    },
-  ];
+  const [user, setUser] = React.useState({
+    name: "",
+    studentId: "",
+    major: "",
+    email: "",
+    posts: [],
+  });
+
+  useEffect(() => {
+    getUser().then((data) => {
+      setUser(data);
+    });
+  }, []);
 
   return (
     <Layout>
@@ -109,7 +89,7 @@ function MyProfileComponent() {
                 mb-1
               "
             >
-              NAME
+              {user.name}
             </div>
             <div
               className="
@@ -117,7 +97,7 @@ function MyProfileComponent() {
                 font-normal
               "
             >
-              학번
+              {user.studentId}
             </div>
             <div
               className="
@@ -125,7 +105,7 @@ function MyProfileComponent() {
                 font-normal
               "
             >
-              학과
+              {user.major}
             </div>
             <div
               className="
@@ -133,7 +113,7 @@ function MyProfileComponent() {
                 font-normal
               "
             >
-              이메일
+              {user.email}
             </div>
           </div>
           {/* 좋아요(하트) */}
@@ -189,9 +169,9 @@ function MyProfileComponent() {
               gap-8
             "
           >
-            {dummyPosts.map((post) => (
+            {user.posts.map((post) => (
               <div
-                key={post.id}
+                key={post.uuid}
                 className="
                   bg-white 
                   rounded-xl 
@@ -232,7 +212,7 @@ function MyProfileComponent() {
                       mr-2
                     "
                   >
-                    #{post.type}
+                    #{post.postType}
                   </span>
                   <span
                     className="
