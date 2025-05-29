@@ -126,14 +126,7 @@ function MyProfileComponent() {
               mr-8
             "
           >
-            <span
-              className="
-                text-4xl 
-                mb-1
-              "
-            >
-              ♡
-            </span>
+            <img src="/icons/heart.svg" alt="하트" className="w-10 h-10 mb-1" />
             <span
               className="
                 text-lg

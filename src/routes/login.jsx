@@ -20,7 +20,8 @@ function LoginForm() {
   };
 
   return (
-    <div
+    <form
+      onSubmit={submitLogin}
       className="
         flex 
         flex-col 
@@ -88,7 +89,7 @@ function LoginForm() {
         "
       ></input>
       <button
-        onClick={submitLogin}
+        type="submit"
         className="
           w-full 
           py-3 
@@ -110,7 +111,7 @@ function LoginForm() {
       >
         회원가입
       </p>
-    </div>
+    </form>
   );
 }
 

@@ -72,19 +72,6 @@ export default function Sidebar() {
           <button
             className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
             onClick={() =>
-              router.navigate({ to: "/", search: { type: "ROOMMATE" } })
-            }
-          >
-            <img
-              src={categoryIcons["룸메"]}
-              alt="룸메 icon"
-              className="w-5 h-5"
-            />
-            룸메
-          </button>
-          <button
-            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
-            onClick={() =>
               router.navigate({ to: "/", search: { type: "DELIVERY" } })
             }
           >
@@ -94,19 +81,6 @@ export default function Sidebar() {
               className="w-5 h-5"
             />
             공동구매
-          </button>
-          <button
-            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
-            onClick={() =>
-              router.navigate({ to: "/", search: { type: "PROJECT" } })
-            }
-          >
-            <img
-              src={categoryIcons["프로젝트"]}
-              alt="프로젝트 icon"
-              className="w-5 h-5"
-            />
-            프로젝트
           </button>
           <button
             className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
@@ -124,6 +98,33 @@ export default function Sidebar() {
           <button
             className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
             onClick={() =>
+              router.navigate({ to: "/", search: { type: "ROOMMATE" } })
+            }
+          >
+            <img
+              src={categoryIcons["룸메"]}
+              alt="룸메 icon"
+              className="w-5 h-5"
+            />
+            룸메
+          </button>
+
+          <button
+            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
+            onClick={() =>
+              router.navigate({ to: "/", search: { type: "DELIVERY" } })
+            }
+          >
+            <img
+              src={categoryIcons["배달"]}
+              alt="배달 icon"
+              className="w-5 h-5"
+            />
+            배달
+          </button>
+          <button
+            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
+            onClick={() =>
               router.navigate({ to: "/", search: { type: "HOBBY" } })
             }
           >
@@ -137,15 +138,15 @@ export default function Sidebar() {
           <button
             className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
             onClick={() =>
-              router.navigate({ to: "/", search: { type: "DELIVERY" } })
+              router.navigate({ to: "/", search: { type: "PROJECT" } })
             }
           >
             <img
-              src={categoryIcons["배달"]}
-              alt="배달 icon"
+              src={categoryIcons["프로젝트"]}
+              alt="프로젝트 icon"
               className="w-5 h-5"
             />
-            배달
+            프로젝트
           </button>
         </div>
       </div>
