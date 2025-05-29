@@ -31,7 +31,6 @@ function WriteComponent() {
         className="
         max-w-[500px] 
         mx-auto 
-        mt-10 
         flex 
         flex-col 
         gap-3.5

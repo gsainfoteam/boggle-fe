@@ -8,8 +8,7 @@ export default function Post() {
       <form
         className="
         max-w-[500px] 
-        mx-auto 
-        mt-10 
+        mx-auto
         flex 
         flex-col 
         gap-3.5
@@ -20,147 +19,341 @@ export default function Post() {
         bg-gray-300
         h-[250px]
         w-full
-        rounded-lg 
-        mb-2
+        rounded-[15px]
       "
         />
-        <h1
-          className="
-          text-[40px] 
+        <div>
+          <h1
+            className="
+          text-[30px] 
           font-bold 
           mb-2
+            "
+          >
+            제목
+          </h1>
+          <div
+            className="
+            flex 
+            items-center
+            text-[15px] 
+           
+            font-medium"
+          >
+            홍길동 | 0000년 00월 00일 |
+            <div
+              className="
+            flex
+            gap-[5px]
+            ml-[5px]"
+            >
+              <button
+                className="
+                bg-[#4B7EFF]
+                text-white
+                font-bold
+                rounded-[5px]
+                py-[2px]
+                px-[5px]
+                "
+              >
+                #공동구매
+              </button>
+              <button
+                className="
+                bg-[#4B7EFF]
+                text-white
+                font-bold
+                rounded-[5px]
+                py-[2px]
+                px-[5px]
+                "
+              >
+                #공동구매
+              </button>
+            </div>
+          </div>
+
+          <div
+            className="
+            flex
+            items-center
+            gap-[10px]"
+          >
+            <img
+              src="/post icons/user.svg"
+              alt="login profile"
+              className="
+            h-[20px]
+            w-[20px]
+            object-contain
+            block
+          "
+            />
+            NN/NN
+          </div>
+          <div
+            className="
+            flex
+            items-center
+            gap-[10px]"
+          >
+            <img
+              src="/post icons/calendar.svg"
+              alt="login profile"
+              className="
+            h-[20px]
+            w-[20px]
+            object-contain
+            block
+          "
+            />
+            0000년 00월 00일 ~ 0000년 00월 00일
+          </div>
+        </div>
+        <div>
+          <h2
+            className="
+          text-[25px] 
+          font-semibold
         "
-        >
-          제목
-        </h1>
-        <label
-          className="
+          >
+            세부 내용
+          </h2>
+          <label
+            className="
           font-medium 
           text-[15px]
         "
-        >
-          제목
-          <p>
-            <input
-              className="
-                w-full 
-                text-[15px] 
-                p-1.5 
-                rounded-md 
-                border-2 
-                border-gray-800 
-                mt-1
-              "
-            />
-          </p>
-        </label>
-        <label
-          className="
-          font-medium 
-          text-[15px]
+          >
+            이것저것
+          </label>
+        </div>
+
+        <div>
+          <h2
+            className="
+          text-[25px] 
+          font-semibold
         "
-        >
-          인원
-          <p>
-            <input
+          >
+            참여자
+          </h2>
+          <div
+            className="
+        bg-white
+        h-[250px]
+        w-full
+        rounded-[15px]
+        flex
+        gap-[5px]
+      "
+          >
+            <div
               className="
-                w-[70px] 
-                text-[15px] 
-                p-1.5 
-                rounded-md 
-                border-2 
-                border-gray-800 
-                mt-1
-              "
-            />
-          </p>
-        </label>
-        <label
-          className="
-          font-medium 
-          text-[15px]
+            bg-[#E5EDFA]
+            h-[66px]
+            w-[59px]
+            rounded-[7.6px]
+            flex
+            flex-col
+            gap-[2px]
+            items-center
+            justify-center
         "
-        >
-          기간
-          <p>
-            <input
+            >
+              <div
+                className="
+                    bg-white
+                    h-[43px]
+                    w-[43px]
+                    rounded-full
+
+                    "
+              />
+              <div
+                className="
+                text-[8px]"
+              >
+                홍길동
+              </div>
+            </div>
+            <div
               className="
-                w-[90px] 
-                text-[15px] 
-                p-1.5 
-                rounded-md 
-                border-2 
-                border-blue-400 
-                mt-1
-              "
-            />
-          </p>
-        </label>
-        <label
-          className="
-          font-medium 
-          text-[15px]
+            bg-[#D9D9D9]
+            h-[66px]
+            w-[59px]
+            rounded-[7.6px]
+            flex
+            flex-col
+            gap-[2px]
+            items-center
+            justify-center
         "
-        >
-          내용
-          <p>
-            <textarea
+            >
+              <div
+                className="
+                    bg-white
+                    h-[43px]
+                    w-[43px]
+                    rounded-full
+
+                    "
+              />
+              <div
+                className="
+                text-[8px]"
+              >
+                홍길동
+              </div>
+            </div>
+            <div
               className="
-                w-full 
-                text-[15px] 
-                p-1.5 
-                rounded-lg 
-                border-2 
-                border-gray-800 
-                mt-1 
-                resize-y
-              "
-            />
-          </p>
-        </label>
-        <label
-          className="
-          font-medium 
-          text-[15px]
+            bg-[#D9D9D9]
+            h-[66px]
+            w-[59px]
+            rounded-[7.6px]
+            flex
+            flex-col
+            gap-[2px]
+            items-center
+            justify-center
         "
-        >
-          이미지 추가
-          <p>
-            <input
-              type="file"
+            >
+              <div
+                className="
+                    bg-white
+                    h-[43px]
+                    w-[43px]
+                    rounded-full
+
+                    "
+              />
+              <div
+                className="
+                text-[8px]"
+              >
+                홍길동
+              </div>
+            </div>
+            <div
               className="
-                w-full 
-                text-[15px] 
-                p-1.5 
-                rounded-md 
-                border-2 
-                border-gray-800 
-                mt-1
-              "
-            />
-          </p>
-        </label>
-        <label
-          className="
-          font-medium 
-          text-[15px]
+            bg-[#D9D9D9]
+            h-[66px]
+            w-[59px]
+            rounded-[7.6px]
+            flex
+            flex-col
+            gap-[2px]
+            items-center
+            justify-center
         "
-        >
-          분류 태그
-          <p>
-            <input
+            >
+              <div
+                className="
+                    bg-white
+                    h-[43px]
+                    w-[43px]
+                    rounded-full
+
+                    "
+              />
+              <div
+                className="
+                text-[8px]"
+              >
+                홍길동
+              </div>
+            </div>
+            <div
               className="
-                w-[100px] 
-                text-[15px] 
-                p-1.5 
-                rounded-md 
-                border-2 
-                border-blue-400 
-                mt-1
-              "
-            />
-          </p>
-        </label>
+            bg-[#D9D9D9]
+            h-[66px]
+            w-[59px]
+            rounded-[7.6px]
+            flex
+            flex-col
+            gap-[2px]
+            items-center
+            justify-center
+        "
+            >
+              <div
+                className="
+                    bg-white
+                    h-[43px]
+                    w-[43px]
+                    rounded-full
+
+                    "
+              />
+              <div
+                className="
+                text-[8px]"
+              >
+                홍길동
+              </div>
+            </div>
+            <div
+              className="
+            bg-[#D9D9D9]
+            h-[66px]
+            w-[59px]
+            rounded-[7.6px]
+            flex
+            flex-col
+            gap-[2px]
+            items-center
+            justify-center
+        "
+            >
+              <div
+                className="
+                    bg-white
+                    h-[43px]
+                    w-[43px]
+                    rounded-full
+
+                    "
+              />
+              <div
+                className="
+                text-[8px]"
+              >
+                홍길동
+              </div>
+            </div>
+            <div
+              className="
+            bg-[#D9D9D9]
+            h-[66px]
+            w-[59px]
+            rounded-[7.6px]
+            flex
+            flex-col
+            gap-[2px]
+            items-center
+            justify-center
+        "
+            >
+              <div
+                className="
+                    bg-white
+                    h-[43px]
+                    w-[43px]
+                    rounded-full
+
+                    "
+              />
+              <div
+                className="
+                text-[8px]"
+              >
+                홍길동
+              </div>
+            </div>
+          </div>
+        </div>
 
         <button
           className="
@@ -175,7 +368,7 @@ export default function Post() {
             cursor-pointer
           "
         >
-          작성/수정완료
+          참여하기
         </button>
       </form>
     </Layout>
