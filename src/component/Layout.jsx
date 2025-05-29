@@ -26,8 +26,6 @@ export default function Layout({ children }) {
           className="
           w-[220px] 
           flex-shrink-0 
-          border-r 
-          border-gray-200 
           bg-white 
           sticky 
           top-[55px] 
@@ -41,7 +39,7 @@ export default function Layout({ children }) {
           className="
           flex-1 
           overflow-y-auto 
-          bg-gray-50 
+          bg-white
           p-8 
           w-full 
           box-border
