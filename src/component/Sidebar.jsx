@@ -33,41 +33,49 @@ export default function Sidebar() {
       h-full
     "
     >
-      {navItems.map((item) => (
-        <button
-          key={item.to}
-          onClick={
-            item.onClick ? item.onClick : () => router.navigate({ to: item.to })
-          }
-          className={`
-            flex
-            items-center
-            gap-[20px]
-            w-full 
-            p-[5px]
-            border-none 
-            rounded-[15px]
-            ${currentPath === item.to ? "bg-[#B1C7FF] text-black" : "bg-transparent"} 
-            font-medium 
-            text-[15px] 
-            mb-3 
-            cursor-pointer 
-            transition-colors 
-            text-left
-          `}
-        >
-          <img src={item.icon} alt={`${item.label} icon`} className="w-5 h-5" />
-          {item.label}
-        </button>
-      ))}
+      {/* 상단 네비게이션 버튼 */}
+      <div className="flex flex-col gap-1 mb-4">
+        {navItems.map((item) => (
+          <button
+            key={item.to}
+            onClick={
+              item.onClick
+                ? item.onClick
+                : () => router.navigate({ to: item.to })
+            }
+            className={`
+              flex
+              items-center
+              gap-[20px]
+              w-full 
+              p-[5px]
+              border-none 
+              rounded-[15px]
+              ${currentPath === item.to ? "bg-[#B1C7FF] text-black" : "bg-transparent"} 
+              font-medium 
+              text-[15px] 
+              mb-3 
+              cursor-pointer 
+              transition-colors 
+              text-left
+            `}
+          >
+            <img
+              src={item.icon}
+              alt={`${item.label} icon`}
+              className="w-5 h-5"
+            />
+            {item.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Divider 추가 */}
+      <div className="border-t border-gray-300 my-4" />
+
+      {/* 카테고리 영역 */}
       <div>
-        <b
-          className="
-          text-[15px]
-        "
-        >
-          카테고리
-        </b>
+        <b className="text-[15px]">카테고리</b>
         <div className="mt-2 flex flex-col gap-1">
           <button
             className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
@@ -108,7 +116,6 @@ export default function Sidebar() {
             />
             룸메
           </button>
-
           <button
             className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
             onClick={() =>
