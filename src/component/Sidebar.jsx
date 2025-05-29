@@ -28,8 +28,8 @@ export default function Sidebar() {
   return (
     <nav
       className="
-      p-6
-      bg-amber-300
+      p-[10px]
+      gap-[10px]
       h-full
     "
     >
@@ -42,12 +42,12 @@ export default function Sidebar() {
           className={`
             flex
             items-center
-            gap-2
+            gap-[20px]
             w-full 
-            py-2.5 
+            p-[5px]
             border-none 
-            rounded-lg 
-            ${currentPath === item.to ? "bg-gray-200 text-gray-800" : "bg-transparent text-blue-600"} 
+            rounded-[15px]
+            ${currentPath === item.to ? "bg-[#B1C7FF] text-black" : "bg-transparent"} 
             font-medium 
             text-[15px] 
             mb-3 

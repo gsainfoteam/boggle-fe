@@ -8,7 +8,6 @@ export default function Header() {
       className="
         w-full
         h-[55px]
-        bg-amber-600
         justify-between
         items-center
         py-[8px]
@@ -98,7 +97,16 @@ export default function Header() {
             bg-[#F5F5F7]
           "
         >
-          🔍
+          <img
+            src="/icons/search.svg"
+            alt="search"
+            className="
+            h-[20px]
+            w-[20px]
+            object-contain
+            block
+          "
+          />
         </button>
       </div>
 
@@ -114,17 +122,25 @@ export default function Header() {
           px-4
           py-2
           rounded-md
-          border
-          border-gray-300
           bg-white
           cursor-pointer
-          text-blue-600
+          text-[#4B7EFF]
           flex
           items-center
           whitespace-nowrap
         "
       >
-        😄로그인
+        <img
+          src="/icons/login-profile.svg"
+          alt="login profile"
+          className="
+            h-[20px]
+            w-[20px]
+            object-contain
+            block
+          "
+        />
+        로그인
       </button>
     </header>
   );
