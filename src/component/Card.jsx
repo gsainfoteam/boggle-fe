@@ -14,7 +14,7 @@ export default function Card({ post }) {
     >
       <div
         className="
-        bg-gray-300 
+        bg-gray-300
         h-[100px] 
         rounded-lg 
         mb-2

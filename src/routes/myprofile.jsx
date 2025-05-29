@@ -31,12 +31,13 @@ function MyProfileComponent() {
       `}</style>
       <div
         className="
+        max-w-[751px] 
+        mx-auto
           flex 
           flex-col 
           h-[calc(100vh-110px)] 
-          w-full 
+          w-
           overflow-hidden
-          bg-amber-700
         "
       >
         {/* 상단 프로필 영역 */}

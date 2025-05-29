@@ -29,7 +29,7 @@ function WriteComponent() {
     <Layout>
       <form
         className="
-        max-w-[420px] 
+        max-w-[500px] 
         mx-auto 
         mt-10 
         flex 
@@ -83,7 +83,7 @@ function WriteComponent() {
               onChange={(e) => setMaxParticipants(e.target.value)}
               type="number"
               className="
-                w-[70px] 
+                w-[120px] 
                 text-[15px] 
                 p-1.5 
                 rounded-md 
@@ -107,12 +107,13 @@ function WriteComponent() {
               onChange={(e) => setDeadline(e.target.value)}
               type="text"
               className="
-                w-[90px] 
+                w-[120px] 
                 text-[15px] 
                 p-1.5 
                 rounded-md 
                 border-2 
-                border-blue-400 
+                border-[#4B7EFF]
+                bg-[#E5EDFA]
                 mt-1
               "
             />
@@ -178,24 +179,32 @@ function WriteComponent() {
               onChange={(e) => setType(e.target.value)}
               type="text"
               className="
-                w-[100px] 
+                w-[120px] 
                 text-[15px] 
                 p-1.5 
                 rounded-md 
                 border-2 
-                border-blue-400 
+                border-[#4B7EFF]
+                bg-[#E5EDFA]
                 mt-1
               "
             />
           </p>
         </label>
 
-        <button
-          onClick={submitPublish}
-          type="submit"
+        <div
           className="
+          flex
+          justify-center
+          items-center"
+        >
+          <button
+            onClick={submitPublish}
+            type="submit"
+            className="
+          w-[260px]
             mt-3.5 
-            bg-blue-500 
+            bg-[#4B7EFF]
             text-white 
             text-[15px] 
             border-none 
@@ -204,9 +213,10 @@ function WriteComponent() {
             font-medium 
             cursor-pointer
           "
-        >
-          작성/수정완료
-        </button>
+          >
+            작성/수정완료
+          </button>
+        </div>
       </form>
     </Layout>
   );

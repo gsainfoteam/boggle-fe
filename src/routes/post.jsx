@@ -7,7 +7,7 @@ export default function Post() {
     <Layout>
       <form
         className="
-        max-w-[420px] 
+        max-w-[500px] 
         mx-auto 
         mt-10 
         flex 
@@ -15,14 +15,23 @@ export default function Post() {
         gap-3.5
       "
       >
+        <div
+          className="
+        bg-gray-300
+        h-[250px]
+        w-full
+        rounded-lg 
+        mb-2
+      "
+        />
         <h1
           className="
-          text-[26px] 
+          text-[40px] 
           font-bold 
           mb-2
         "
         >
-          게시글 작성
+          제목
         </h1>
         <label
           className="
