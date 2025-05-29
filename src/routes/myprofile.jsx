@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import Layout from '../component/Layout';
-import { getUser } from '../api/user/getUSer';
+import { getUser } from '../api/user/getUser';
 import React, { useEffect } from 'react';
 
 export const Route = createFileRoute('/myProfile')({
