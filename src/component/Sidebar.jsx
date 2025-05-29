@@ -3,6 +3,8 @@ import { Link, useRouter } from "@tanstack/react-router";
 export default function Sidebar() {
   const router = useRouter();
   const currentPath = router.state.location.pathname;
+  // 현재 선택된 카테고리 type 추출
+  const currentCategory = router.state.location.search?.type;
 
   const navItems = [
     {
@@ -24,6 +26,16 @@ export default function Sidebar() {
     취미: "/category icons/hobby.svg",
     배달: "/category icons/curtlery.svg",
   };
+
+  // 카테고리 버튼 정보 배열
+  const categoryButtons = [
+    { label: "공동구매", type: "DELIVERY", icon: categoryIcons["공동구매"] },
+    { label: "공부", type: "STUDY", icon: categoryIcons["공부"] },
+    { label: "룸메", type: "ROOMMATE", icon: categoryIcons["룸메"] },
+    { label: "배달", type: "DELIVERY", icon: categoryIcons["배달"] },
+    { label: "취미", type: "HOBBY", icon: categoryIcons["취미"] },
+    { label: "프로젝트", type: "PROJECT", icon: categoryIcons["프로젝트"] },
+  ];
 
   return (
     <nav
@@ -51,10 +63,9 @@ export default function Sidebar() {
               p-[5px]
               border-none 
               rounded-[15px]
-              ${currentPath === item.to ? "bg-[#B1C7FF] text-black" : "bg-transparent"} 
+              ${currentPath === item.to && !currentCategory ? "bg-[#B1C7FF] text-black" : "bg-transparent"} 
               font-medium 
-              text-[15px] 
-              mb-3 
+              text-[15px]
               cursor-pointer 
               transition-colors 
               text-left
@@ -70,91 +81,33 @@ export default function Sidebar() {
         ))}
       </div>
 
-      {/* Divider 추가 */}
+      {/* Divider */}
       <div className="border-t border-gray-300 my-4" />
 
       {/* 카테고리 영역 */}
       <div>
-        <b className="text-[15px]">카테고리</b>
+        <label className="text-[18px] font-bold">카테고리</label>
         <div className="mt-2 flex flex-col gap-1">
-          <button
-            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
-            onClick={() =>
-              router.navigate({ to: "/", search: { type: "DELIVERY" } })
-            }
-          >
-            <img
-              src={categoryIcons["공동구매"]}
-              alt="공동구매 icon"
-              className="w-5 h-5"
-            />
-            공동구매
-          </button>
-          <button
-            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
-            onClick={() =>
-              router.navigate({ to: "/", search: { type: "STUDY" } })
-            }
-          >
-            <img
-              src={categoryIcons["공부"]}
-              alt="공부 icon"
-              className="w-5 h-5"
-            />
-            공부
-          </button>
-          <button
-            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
-            onClick={() =>
-              router.navigate({ to: "/", search: { type: "ROOMMATE" } })
-            }
-          >
-            <img
-              src={categoryIcons["룸메"]}
-              alt="룸메 icon"
-              className="w-5 h-5"
-            />
-            룸메
-          </button>
-          <button
-            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
-            onClick={() =>
-              router.navigate({ to: "/", search: { type: "DELIVERY" } })
-            }
-          >
-            <img
-              src={categoryIcons["배달"]}
-              alt="배달 icon"
-              className="w-5 h-5"
-            />
-            배달
-          </button>
-          <button
-            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
-            onClick={() =>
-              router.navigate({ to: "/", search: { type: "HOBBY" } })
-            }
-          >
-            <img
-              src={categoryIcons["취미"]}
-              alt="취미 icon"
-              className="w-5 h-5"
-            />
-            취미
-          </button>
-          <button
-            className="flex items-center gap-2 w-full py-2.5 border-none rounded-lg bg-transparent text-black font-medium text-[15px] cursor-pointer transition-colors text-left hover:bg-gray-100"
-            onClick={() =>
-              router.navigate({ to: "/", search: { type: "PROJECT" } })
-            }
-          >
-            <img
-              src={categoryIcons["프로젝트"]}
-              alt="프로젝트 icon"
-              className="w-5 h-5"
-            />
-            프로젝트
-          </button>
+          {categoryButtons.map((cat) => (
+            <button
+              key={cat.label}
+              className={`
+                flex items-center gap-[20px] w-full p-[5px] border-none rounded-[15px]
+                font-medium text-[15px] cursor-pointer transition-colors text-left
+                ${currentCategory === cat.type ? "bg-[#B1C7FF] text-black" : "bg-transparent text-black"}
+              `}
+              onClick={() =>
+                router.navigate({ to: "/", search: { type: cat.type } })
+              }
+            >
+              <img
+                src={cat.icon}
+                alt={`${cat.label} icon`}
+                className="w-5 h-5"
+              />
+              {cat.label}
+            </button>
+          ))}
         </div>
       </div>
     </nav>
