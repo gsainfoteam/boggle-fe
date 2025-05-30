@@ -1,7 +1,20 @@
-import { useRouter } from "@tanstack/react-router";
+import { useRouter } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
+import { getUser } from '../api/user/getUser';
 
 export default function Header() {
   const router = useRouter();
+
+  const [name, setName] = useState('로그인');
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      getUser(token).then((user) => {
+        setName(user.name);
+      });
+    }
+  });
 
   return (
     <header
@@ -111,7 +124,7 @@ export default function Header() {
       </div>
 
       <button
-        onClick={() => router.navigate({ to: "/login" })}
+        onClick={() => router.navigate({ to: '/login' })}
         className="
           h-[36px]
           gap-[8px]
@@ -140,7 +153,7 @@ export default function Header() {
             block
           "
         />
-        로그인
+        {name}
       </button>
     </header>
   );
