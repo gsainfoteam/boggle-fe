@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Card from './Card';
-import { getPosts } from '../api/post/postList.js';
+import { getPosts } from '../api/post/getPostList.js';
 
 export default function CardList({ type }) {
   const [posts, setPosts] = useState([]);

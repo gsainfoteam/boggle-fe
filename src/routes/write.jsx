@@ -1,28 +1,27 @@
-import { createFileRoute } from "@tanstack/react-router";
-import Layout from "../component/Layout";
-import React from "react";
-import { publishPost } from "../api/post/publishPost";
-export const Route = createFileRoute("/write")({
+import { createFileRoute, useRouter } from '@tanstack/react-router';
+import Layout from '../component/Layout';
+import React from 'react';
+import { publishPost } from '../api/post/publishPost';
+export const Route = createFileRoute('/write')({
   component: WriteComponent,
 });
 
 function WriteComponent() {
-  const [title, setTitle] = React.useState("");
-  const [content, setContent] = React.useState("");
-  const [type, setType] = React.useState("");
-  const [maxParticipants, setMaxParticipants] = React.useState("");
-  const [deadline, setDeadline] = React.useState("");
+  const router = useRouter();
+
+  const [title, setTitle] = React.useState('');
+  const [content, setContent] = React.useState('');
+  const [type, setType] = React.useState('');
+  const [maxParticipants, setMaxParticipants] = React.useState('');
+  const [deadline, setDeadline] = React.useState('');
 
   const submitPublish = async (e) => {
     e.preventDefault();
-    const res = await publishPost(
-      title,
-      content,
-      type,
-      maxParticipants,
-      deadline
-    );
-    console.log(res);
+    const res = await publishPost(title, content, type, maxParticipants, deadline);
+    router.navigate({
+      to: `/post`,
+      search: { uuid: res.uuid },
+    });
   };
 
   return (
