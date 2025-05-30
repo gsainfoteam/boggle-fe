@@ -1,13 +1,17 @@
 import { createFileRoute, useRouter } from '@tanstack/react-router';
 import Layout from '../component/Layout';
-import React from 'react';
-import { publishPost } from '../api/post/publishPost';
-export const Route = createFileRoute('/write')({
-  component: WriteComponent,
+import React, { useEffect } from 'react';
+import { editPost } from '../api/post/editPost';
+import { getPost } from '../api/post/getPost';
+
+export const Route = createFileRoute('/edit')({
+  component: EditComponent,
+  validateSearch: (search) => ({ uuid: search.uuid }),
 });
 
-function WriteComponent() {
+function EditComponent() {
   const router = useRouter();
+  const uuid = Route.useSearch().uuid;
 
   const [title, setTitle] = React.useState('');
   const [content, setContent] = React.useState('');
@@ -15,9 +19,20 @@ function WriteComponent() {
   const [maxParticipants, setMaxParticipants] = React.useState('');
   const [deadline, setDeadline] = React.useState('');
 
+  useEffect(() => {
+    getPost(uuid).then((post) => {
+      setTitle(post.title);
+      setContent(post.content);
+      setType(post.type);
+      setMaxParticipants(post.maxParticipants);
+      const deadlineDate = new Date(post.deadline);
+      setDeadline(`${deadlineDate.getFullYear()}-${deadlineDate.getMonth() + 1}-${deadlineDate.getDate()}`);
+    });
+  }, [uuid]);
+
   const submitPublish = async (e) => {
     e.preventDefault();
-    const res = await publishPost(title, content, type, maxParticipants, deadline);
+    const res = await editPost(uuid, title, content, type, maxParticipants, deadline);
     router.navigate({
       to: `/post`,
       search: { uuid: res.uuid },
@@ -212,7 +227,7 @@ function WriteComponent() {
             cursor-pointer
           "
           >
-            작성하기
+            수정하기
           </button>
         </div>
       </form>
