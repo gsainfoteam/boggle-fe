@@ -1,6 +1,17 @@
+import { useRouter } from '@tanstack/react-router';
+
 export default function Card({ post }) {
+  const router = useRouter();
+
   return (
     <div
+      key={post.uuid}
+      onClick={() => {
+        router.navigate({
+          to: `/post`,
+          search: { uuid: post.uuid },
+        });
+      }}
       className="
       bg-white 
       rounded-xl 

@@ -1,8 +1,37 @@
-import { createFileRoute } from "@tanstack/react-router";
-import Layout from "../component/Layout";
-import React from "react";
+import { createFileRoute } from '@tanstack/react-router';
+import Layout from '../component/Layout';
+import React, { useEffect } from 'react';
+import { getPost } from '../api/post/getPost';
 
 export default function Post() {
+  const uuid = Route.useSearch().uuid;
+
+  const [title, setTitle] = React.useState('');
+  const [content, setContent] = React.useState('');
+  const [type, setType] = React.useState('');
+  const [tags, setTags] = React.useState([]);
+  const [author, setAuthor] = React.useState('');
+  const [createdAt, setCreatedAt] = React.useState('');
+  const [participants, setParticipants] = React.useState([{ uuid: '', name: '' }]);
+  const [maxParticipants, setMaxParticipants] = React.useState(0);
+  const [deadline, setDeadline] = React.useState('0000년 00월 00일');
+
+  useEffect(() => {
+    getPost(uuid).then((post) => {
+      setTitle(post.title);
+      setContent(post.content);
+      setType(post.type);
+      setTags(post.tags);
+      setAuthor(post.author);
+      const createDate = new Date(post.createdAt);
+      setCreatedAt(`${createDate.getFullYear()}년 ${createDate.getMonth() + 1}월 ${createDate.getDate()}일`);
+      setParticipants(post.participants);
+      setMaxParticipants(post.maxParticipants);
+      const deadlineDate = new Date(post.deadline);
+      setDeadline(`${deadlineDate.getFullYear()}년 ${deadlineDate.getMonth() + 1}월 ${deadlineDate.getDate()}일`);
+    });
+  });
+
   return (
     <Layout>
       <form
@@ -30,7 +59,7 @@ export default function Post() {
           mb-2
             "
           >
-            제목
+            {title}
           </h1>
           <div
             className="
@@ -40,7 +69,7 @@ export default function Post() {
            
             font-medium"
           >
-            홍길동 | 0000년 00월 00일 |
+            {author} | {createdAt} |
             <div
               className="
             flex
@@ -57,10 +86,11 @@ export default function Post() {
                 px-[5px]
                 "
               >
-                #공동구매
+                #{type}
               </button>
-              <button
-                className="
+              {tags.map((tag) => (
+                <button
+                  className="
                 bg-[#4B7EFF]
                 text-white
                 font-bold
@@ -68,9 +98,10 @@ export default function Post() {
                 py-[2px]
                 px-[5px]
                 "
-              >
-                #공동구매
-              </button>
+                >
+                  #{tag}
+                </button>
+              ))}
             </div>
           </div>
 
@@ -90,7 +121,7 @@ export default function Post() {
             block
           "
             />
-            NN/NN
+            {participants.length}/{maxParticipants}
           </div>
           <div
             className="
@@ -108,7 +139,7 @@ export default function Post() {
             block
           "
             />
-            0000년 00월 00일 ~ 0000년 00월 00일
+            {createdAt} ~ {deadline}
           </div>
         </div>
         <div>
@@ -126,7 +157,7 @@ export default function Post() {
           text-[15px]
         "
           >
-            이것저것
+            {content}
           </label>
         </div>
 
@@ -139,6 +170,7 @@ export default function Post() {
           >
             참여자
           </h2>
+
           <div
             className="
         bg-white
@@ -175,11 +207,12 @@ export default function Post() {
                 className="
                 text-[8px]"
               >
-                홍길동
+                {participants[0].name}
               </div>
             </div>
-            <div
-              className="
+            {participants.slice(1).map((participant) => (
+              <div
+                className="
             bg-[#D9D9D9]
             h-[66px]
             w-[59px]
@@ -190,168 +223,24 @@ export default function Post() {
             items-center
             justify-center
         "
-            >
-              <div
-                className="
+              >
+                <div
+                  className="
                     bg-white
                     h-[43px]
                     w-[43px]
                     rounded-full
 
                     "
-              />
-              <div
-                className="
+                />
+                <div
+                  className="
                 text-[8px]"
-              >
-                홍길동
+                >
+                  {participant.name}
+                </div>
               </div>
-            </div>
-            <div
-              className="
-            bg-[#D9D9D9]
-            h-[66px]
-            w-[59px]
-            rounded-[7.6px]
-            flex
-            flex-col
-            gap-[2px]
-            items-center
-            justify-center
-        "
-            >
-              <div
-                className="
-                    bg-white
-                    h-[43px]
-                    w-[43px]
-                    rounded-full
-
-                    "
-              />
-              <div
-                className="
-                text-[8px]"
-              >
-                홍길동
-              </div>
-            </div>
-            <div
-              className="
-            bg-[#D9D9D9]
-            h-[66px]
-            w-[59px]
-            rounded-[7.6px]
-            flex
-            flex-col
-            gap-[2px]
-            items-center
-            justify-center
-        "
-            >
-              <div
-                className="
-                    bg-white
-                    h-[43px]
-                    w-[43px]
-                    rounded-full
-
-                    "
-              />
-              <div
-                className="
-                text-[8px]"
-              >
-                홍길동
-              </div>
-            </div>
-            <div
-              className="
-            bg-[#D9D9D9]
-            h-[66px]
-            w-[59px]
-            rounded-[7.6px]
-            flex
-            flex-col
-            gap-[2px]
-            items-center
-            justify-center
-        "
-            >
-              <div
-                className="
-                    bg-white
-                    h-[43px]
-                    w-[43px]
-                    rounded-full
-
-                    "
-              />
-              <div
-                className="
-                text-[8px]"
-              >
-                홍길동
-              </div>
-            </div>
-            <div
-              className="
-            bg-[#D9D9D9]
-            h-[66px]
-            w-[59px]
-            rounded-[7.6px]
-            flex
-            flex-col
-            gap-[2px]
-            items-center
-            justify-center
-        "
-            >
-              <div
-                className="
-                    bg-white
-                    h-[43px]
-                    w-[43px]
-                    rounded-full
-
-                    "
-              />
-              <div
-                className="
-                text-[8px]"
-              >
-                홍길동
-              </div>
-            </div>
-            <div
-              className="
-            bg-[#D9D9D9]
-            h-[66px]
-            w-[59px]
-            rounded-[7.6px]
-            flex
-            flex-col
-            gap-[2px]
-            items-center
-            justify-center
-        "
-            >
-              <div
-                className="
-                    bg-white
-                    h-[43px]
-                    w-[43px]
-                    rounded-full
-
-                    "
-              />
-              <div
-                className="
-                text-[8px]"
-              >
-                홍길동
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -375,6 +264,7 @@ export default function Post() {
   );
 }
 
-export const Route = createFileRoute("/post")({
+export const Route = createFileRoute('/post')({
   component: Post,
+  validateSearch: (search) => ({ uuid: search.uuid }),
 });
