@@ -126,7 +126,7 @@ export default function Header() {
 
       <button
         onClick={() => {
-          if (!token) router.navigate({ to: '/login' });
+          if (name === '로그인') router.navigate({ to: '/login' });
           else router.navigate({ to: '/myProfile' });
         }}
         className="
