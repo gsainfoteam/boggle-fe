@@ -6,15 +6,16 @@ export default function Header() {
   const router = useRouter();
 
   const [name, setName] = useState('로그인');
+  const [token, setToken] = useState();
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
+    setToken(localStorage.getItem('accessToken'));
     if (token) {
       getUser(token).then((user) => {
         setName(user.name);
       });
     }
-  });
+  }, [token]);
 
   return (
     <header
@@ -124,7 +125,10 @@ export default function Header() {
       </div>
 
       <button
-        onClick={() => router.navigate({ to: '/login' })}
+        onClick={() => {
+          if (!token) router.navigate({ to: '/login' });
+          else router.navigate({ to: '/myProfile' });
+        }}
         className="
           h-[36px]
           gap-[8px]

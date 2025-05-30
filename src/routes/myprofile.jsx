@@ -3,7 +3,7 @@ import Layout from "../component/Layout";
 import { getUser } from "../api/user/getUser";
 import React, { useEffect } from "react";
 
-export const Route = createFileRoute("/myprofile")({
+export const Route = createFileRoute("/myProfile")({
   component: MyProfileComponent,
 });
 
