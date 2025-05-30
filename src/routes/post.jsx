@@ -2,6 +2,7 @@ import { createFileRoute, useRouter } from '@tanstack/react-router';
 import Layout from '../component/Layout';
 import React, { useEffect } from 'react';
 import { getPost } from '../api/post/getPost';
+import { joinPost } from '../api/post/joinPost';
 
 export default function Post() {
   const router = useRouter();
@@ -32,6 +33,11 @@ export default function Post() {
       setDeadline(`${deadlineDate.getFullYear()}년 ${deadlineDate.getMonth() + 1}월 ${deadlineDate.getDate()}일`);
     });
   });
+
+  const handleJoinPost = async (e) => {
+    e.preventDefault();
+    joinPost(uuid);
+  };
 
   return (
     <Layout>
@@ -260,6 +266,7 @@ export default function Post() {
         </div>
 
         <button
+          onClick={handleJoinPost}
           className="
             mt-3.5 
             bg-blue-500 
