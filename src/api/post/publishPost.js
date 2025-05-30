@@ -1,30 +1,21 @@
 export async function publishPost(title, content, type, maxParticipants, deadline) {
-    console.log(JSON.stringify({
-        title: title,
-        content: content,
-        type: type,
-        tags: [],
-        maxParticipants: maxParticipants,
-        deadline: deadline
-      }))
-    const response = await fetch('/api/post', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: title,
-        content: content,
-        type: type,
-        tags: [],
-        maxParticipants: maxParticipants,
-        deadline: deadline
-      }),
-    });
-    if (!response.ok) {
-      throw new Error('Failed to fetch posts');
-    }
-    return response.json();
+  const response = await fetch('/api/post', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      title: title,
+      content: content,
+      type: type,
+      tags: [],
+      maxParticipants: maxParticipants,
+      deadline: deadline,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch posts');
   }
-  
+  return response.json();
+}
