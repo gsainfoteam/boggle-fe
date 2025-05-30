@@ -1,9 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useRouter } from '@tanstack/react-router';
 import Layout from '../component/Layout';
 import React, { useEffect } from 'react';
 import { getPost } from '../api/post/getPost';
 
 export default function Post() {
+  const router = useRouter();
   const uuid = Route.useSearch().uuid;
 
   const [title, setTitle] = React.useState('');
@@ -182,6 +183,13 @@ export default function Post() {
       "
           >
             <div
+              key={participants[0].uuid}
+              onClick={() => {
+                router.navigate({
+                  to: `/user`,
+                  search: { uuid: participants[0].uuid },
+                });
+              }}
               className="
             bg-[#E5EDFA]
             h-[66px]
@@ -212,6 +220,13 @@ export default function Post() {
             </div>
             {participants.slice(1).map((participant) => (
               <div
+                key={participant.uuid}
+                onClick={() => {
+                  router.navigate({
+                    to: `/user`,
+                    search: { uuid: participant.uuid },
+                  });
+                }}
                 className="
             bg-[#D9D9D9]
             h-[66px]

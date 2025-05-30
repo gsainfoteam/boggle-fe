@@ -1,6 +1,6 @@
 import { useRouter } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { getUser } from '../api/user/getUser';
+import { getMyProfile } from '../api/user/getMyProfile';
 
 export default function Header() {
   const router = useRouter();
@@ -11,7 +11,7 @@ export default function Header() {
   useEffect(() => {
     setToken(localStorage.getItem('accessToken'));
     if (token) {
-      getUser(token).then((user) => {
+      getMyProfile(token).then((user) => {
         setName(user.name);
       });
     }

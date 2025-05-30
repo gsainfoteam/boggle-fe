@@ -1,13 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
 import Layout from '../component/Layout';
+import { getUser } from '../api/user/getUser';
 import React, { useEffect } from 'react';
-import { getMyProfile } from '../api/user/getMyProfile';
 
-export const Route = createFileRoute('/myProfile')({
-  component: MyProfileComponent,
+export const Route = createFileRoute('/user')({
+  component: User,
 });
 
-function MyProfileComponent() {
+function User() {
+  const uuid = Route.useSearch().uuid;
+
   const [user, setUser] = React.useState({
     name: '',
     studentId: '',
@@ -17,10 +19,10 @@ function MyProfileComponent() {
   });
 
   useEffect(() => {
-    getMyProfile().then((data) => {
+    getUser(uuid).then((data) => {
       setUser(data);
     });
-  }, []);
+  }, [uuid]);
 
   return (
     <Layout>
