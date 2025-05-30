@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useRouter } from '@tanstack/react-router';
 import Layout from '../component/Layout';
 import React, { useEffect } from 'react';
 import { getMyProfile } from '../api/user/getMyProfile';
@@ -8,6 +8,8 @@ export const Route = createFileRoute('/myProfile')({
 });
 
 function MyProfileComponent() {
+  const router = useRouter();
+
   const [user, setUser] = React.useState({
     name: '',
     studentId: '',
@@ -166,6 +168,12 @@ function MyProfileComponent() {
             {user.posts.map((post) => (
               <div
                 key={post.uuid}
+                onClick={() => {
+                  router.navigate({
+                    to: `/post`,
+                    search: { uuid: post.uuid },
+                  });
+                }}
                 className="
                   bg-white 
                   rounded-xl 
