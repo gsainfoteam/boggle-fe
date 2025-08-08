@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as WriteImport } from './routes/write'
+import { Route as RoommatePostImport } from './routes/roommatePost'
 import { Route as PostImport } from './routes/post'
 import { Route as MyprofileImport } from './routes/myprofile'
 import { Route as LoginImport } from './routes/login'
@@ -22,6 +23,12 @@ import { Route as IndexImport } from './routes/index'
 const WriteRoute = WriteImport.update({
   id: '/write',
   path: '/write',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const RoommatePostRoute = RoommatePostImport.update({
+  id: '/roommatePost',
+  path: '/roommatePost',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -81,6 +88,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PostImport
       parentRoute: typeof rootRoute
     }
+    '/roommatePost': {
+      id: '/roommatePost'
+      path: '/roommatePost'
+      fullPath: '/roommatePost'
+      preLoaderRoute: typeof RoommatePostImport
+      parentRoute: typeof rootRoute
+    }
     '/write': {
       id: '/write'
       path: '/write'
@@ -98,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/myprofile': typeof MyprofileRoute
   '/post': typeof PostRoute
+  '/roommatePost': typeof RoommatePostRoute
   '/write': typeof WriteRoute
 }
 
@@ -106,6 +121,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/myprofile': typeof MyprofileRoute
   '/post': typeof PostRoute
+  '/roommatePost': typeof RoommatePostRoute
   '/write': typeof WriteRoute
 }
 
@@ -115,15 +131,29 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/myprofile': typeof MyprofileRoute
   '/post': typeof PostRoute
+  '/roommatePost': typeof RoommatePostRoute
   '/write': typeof WriteRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/myprofile' | '/post' | '/write'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/myprofile'
+    | '/post'
+    | '/roommatePost'
+    | '/write'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/myprofile' | '/post' | '/write'
-  id: '__root__' | '/' | '/login' | '/myprofile' | '/post' | '/write'
+  to: '/' | '/login' | '/myprofile' | '/post' | '/roommatePost' | '/write'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/myprofile'
+    | '/post'
+    | '/roommatePost'
+    | '/write'
   fileRoutesById: FileRoutesById
 }
 
@@ -132,6 +162,7 @@ export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   MyprofileRoute: typeof MyprofileRoute
   PostRoute: typeof PostRoute
+  RoommatePostRoute: typeof RoommatePostRoute
   WriteRoute: typeof WriteRoute
 }
 
@@ -140,6 +171,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   MyprofileRoute: MyprofileRoute,
   PostRoute: PostRoute,
+  RoommatePostRoute: RoommatePostRoute,
   WriteRoute: WriteRoute,
 }
 
@@ -157,6 +189,7 @@ export const routeTree = rootRoute
         "/login",
         "/myprofile",
         "/post",
+        "/roommatePost",
         "/write"
       ]
     },
@@ -171,6 +204,9 @@ export const routeTree = rootRoute
     },
     "/post": {
       "filePath": "post.jsx"
+    },
+    "/roommatePost": {
+      "filePath": "roommatePost.jsx"
     },
     "/write": {
       "filePath": "write.jsx"
