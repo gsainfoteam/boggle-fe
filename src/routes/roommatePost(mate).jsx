@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import Layout from "../component/Layout";
 import { useState } from 'react'
 
-export const Route = createFileRoute('/roommatePost')({
+export const Route = createFileRoute('/roommatePost(mate)')({
   component: RouteComponent,
 })
 
@@ -50,16 +50,17 @@ function RouteComponent() {
 
   return (
     <Layout>
-      <div className="h-screen py-5 flex flex-col justify-center items-center">
+      <div className="max-h-screen py-5 flex justify-center">
+        <div className="max-w-4xl">
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
             룸메를 구합니다.
           </h1>
           
           <form onSubmit={handleSubmit} className="bg-white p-8">
-            <div className="justify-evenly">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-evenly">
               
               {/* 내 정보 입력하기 */}
-              <div className="space-y-3 h-full">
+              <div className="space-y-3">
                 <h2 className="text-xl font-semibold text-gray-700 mb-4">내 정보 입력하기</h2>
                 
                 {/* 성별 */}
@@ -351,6 +352,206 @@ function RouteComponent() {
                   />
                 </div>
               </div>
+
+              {/* 내가 원하는 룸메 정보 입력하기 */}
+              <div className="space-y-6">
+                <h2 className="text-xl font-semibold text-gray-700 mb-4">내가 원하는 룸메 정보 입력하기</h2>
+                
+                {/* 학년 */}
+                <div className="flex items-center">
+                  <label className="block w-full text-sm font-medium text-gray-700">
+                    학년
+                  </label>
+                  <select
+                    value={formData.preferredGrade}
+                    onChange={(e) => handleInputChange('preferredGrade', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Select option...</option>
+                    <option value="1학년">1학년</option>
+                    <option value="2학년">2학년</option>
+                    <option value="3학년">3학년</option>
+                    <option value="4학년">4학년</option>
+                    <option value="대학원">대학원</option>
+                  </select>
+                </div>
+
+                {/* 나이 */}
+                <div className="flex items-center">
+                  <label className="block w-full text-sm font-medium text-gray-700">
+                    나이
+                  </label>
+                  <select
+                    value={formData.preferredAge}
+                    onChange={(e) => handleInputChange('preferredAge', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Select option...</option>
+                    {Array.from({length: 30}, (_, i) => i + 18).map(age => (
+                      <option key={age} value={age}>{age}세</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* MBTI */}
+                <div className="flex items-center">
+                  <label className="block w-full text-sm font-medium text-gray-700">
+                    MBTI
+                  </label>
+                  <select
+                    value={formData.preferredMbti}
+                    onChange={(e) => handleInputChange('preferredMbti', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Select option...</option>
+                    <option value="INTJ">INTJ</option>
+                    <option value="INTP">INTP</option>
+                    <option value="ENTJ">ENTJ</option>
+                    <option value="ENTP">ENTP</option>
+                    <option value="INFJ">INFJ</option>
+                    <option value="INFP">INFP</option>
+                    <option value="ENFJ">ENFJ</option>
+                    <option value="ENFP">ENFP</option>
+                    <option value="ISTJ">ISTJ</option>
+                    <option value="ISFJ">ISFJ</option>
+                    <option value="ESTJ">ESTJ</option>
+                    <option value="ESFJ">ESFJ</option>
+                    <option value="ISTP">ISTP</option>
+                    <option value="ISFP">ISFP</option>
+                    <option value="ESTP">ESTP</option>
+                    <option value="ESFP">ESFP</option>
+                  </select>
+                </div>
+
+                {/* 수면시간 */}
+                <div className="flex items-center">
+                  <label className="block w-full text-sm font-medium text-gray-700">
+                    수면시간
+                  </label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      type="time"
+                      value={formData.preferredSleepStart}
+                      onChange={(e) => handleInputChange('preferredSleepStart', e.target.value)}
+                      className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <span>~</span>
+                    <input
+                      type="time"
+                      value={formData.preferredSleepEnd}
+                      onChange={(e) => handleInputChange('preferredSleepEnd', e.target.value)}
+                      className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+
+                {/* 코골이 */}
+                <div className="flex items-center">
+                  <label className="block w-full text-sm font-medium text-gray-700">
+                    코골이
+                  </label>
+                  <div className="flex space-x-4 w-full">
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="preferredSnoring"
+                        value="좋아요"
+                        checked={formData.preferredSnoring === '좋아요'}
+                        onChange={(e) => handleInputChange('preferredSnoring', e.target.value)}
+                        className="mr-2"
+                      />
+                      좋아요
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="preferredSnoring"
+                        value="싫어요"
+                        checked={formData.preferredSnoring === '싫어요'}
+                        onChange={(e) => handleInputChange('preferredSnoring', e.target.value)}
+                        className="mr-2"
+                      />
+                      싫어요
+                    </label>
+                  </div>
+                </div>
+
+                {/* 이갈이 */}
+                <div className="flex items-center">
+                  <label className="block w-full text-sm font-medium text-gray-700">
+                    이갈이
+                  </label>
+                  <div className="flex space-x-4 w-full">
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="preferredTeethGrinding"
+                        value="좋아요"
+                        checked={formData.preferredTeethGrinding === '좋아요'}
+                        onChange={(e) => handleInputChange('preferredTeethGrinding', e.target.value)}
+                        className="mr-2"
+                      />
+                      좋아요
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="preferredTeethGrinding"
+                        value="싫어요"
+                        checked={formData.preferredTeethGrinding === '싫어요'}
+                        onChange={(e) => handleInputChange('preferredTeethGrinding', e.target.value)}
+                        className="mr-2"
+                      />
+                      싫어요
+                    </label>
+                  </div>
+                </div>
+
+                {/* 담배 */}
+                <div className="flex items-center">
+                  <label className="block w-full text-sm font-medium text-gray-700">
+                    담배
+                  </label>
+                  <div className="flex space-x-4 w-full">
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="preferredSmoking"
+                        value="좋아요"
+                        checked={formData.preferredSmoking === '좋아요'}
+                        onChange={(e) => handleInputChange('preferredSmoking', e.target.value)}
+                        className="mr-2"
+                      />
+                      좋아요
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="preferredSmoking"
+                        value="싫어요"
+                        checked={formData.preferredSmoking === '싫어요'}
+                        onChange={(e) => handleInputChange('preferredSmoking', e.target.value)}
+                        className="mr-2"
+                      />
+                      싫어요
+                    </label>
+                  </div>
+                </div>
+
+                {/* 기타 */}
+                <div className="flex items-center">
+                  <label className="block w-full text-sm font-medium text-gray-700">
+                    기타
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.preferredOther}
+                    onChange={(e) => handleInputChange('preferredOther', e.target.value)}
+                    placeholder="ex) 마라탕을 좋아하시는 분"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+              </div>
             </div>
 
             {/* 작성완료 버튼 */}
@@ -363,6 +564,7 @@ function RouteComponent() {
               </button>
             </div>
           </form>
+        </div>
       </div>
     </Layout>
   )
