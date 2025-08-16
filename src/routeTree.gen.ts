@@ -10,15 +10,15 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as WriteImport } from './routes/write'
-import { Route as UserImport } from './routes/user'
-import { Route as RoommatePostImport } from './routes/roommatePost'
-import { Route as PostImport } from './routes/post'
-import { Route as MyProfileImport } from './routes/myProfile'
-import { Route as LoginImport } from './routes/login'
-import { Route as EditImport } from './routes/edit'
-import { Route as IndexImport } from './routes/index'
+import { Route as rootRoute } from './routes/__root';
+import { Route as WriteImport } from './routes/write';
+import { Route as UserImport } from './routes/user';
+import { Route as RoommatePostImport } from './routes/roommatePost';
+import { Route as PostImport } from './routes/post';
+import { Route as MyProfileImport } from './routes/myProfile';
+import { Route as LoginImport } from './routes/login';
+import { Route as EditImport } from './routes/edit';
+import { Route as IndexImport } from './routes/index';
 
 // Create/Update Routes
 
@@ -26,182 +26,166 @@ const WriteRoute = WriteImport.update({
   id: '/write',
   path: '/write',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const UserRoute = UserImport.update({
   id: '/user',
   path: '/user',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const RoommatePostRoute = RoommatePostImport.update({
   id: '/roommatePost',
   path: '/roommatePost',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const PostRoute = PostImport.update({
   id: '/post',
   path: '/post',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const MyProfileRoute = MyProfileImport.update({
   id: '/myProfile',
   path: '/myProfile',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const LoginRoute = LoginImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const EditRoute = EditImport.update({
   id: '/edit',
   path: '/edit',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
     '/edit': {
-      id: '/edit'
-      path: '/edit'
-      fullPath: '/edit'
-      preLoaderRoute: typeof EditImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/edit';
+      path: '/edit';
+      fullPath: '/edit';
+      preLoaderRoute: typeof EditImport;
+      parentRoute: typeof rootRoute;
+    };
     '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/login';
+      path: '/login';
+      fullPath: '/login';
+      preLoaderRoute: typeof LoginImport;
+      parentRoute: typeof rootRoute;
+    };
     '/myProfile': {
-      id: '/myProfile'
-      path: '/myProfile'
-      fullPath: '/myProfile'
-      preLoaderRoute: typeof MyProfileImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/myProfile';
+      path: '/myProfile';
+      fullPath: '/myProfile';
+      preLoaderRoute: typeof MyProfileImport;
+      parentRoute: typeof rootRoute;
+    };
     '/post': {
-      id: '/post'
-      path: '/post'
-      fullPath: '/post'
-      preLoaderRoute: typeof PostImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/post';
+      path: '/post';
+      fullPath: '/post';
+      preLoaderRoute: typeof PostImport;
+      parentRoute: typeof rootRoute;
+    };
     '/user': {
-      id: '/user'
-      path: '/user'
-      fullPath: '/user'
-      preLoaderRoute: typeof UserImport
+      id: '/user';
+      path: '/user';
+      fullPath: '/user';
+      preLoaderRoute: typeof UserImport;
+    };
     '/roommatePost': {
-      id: '/roommatePost'
-      path: '/roommatePost'
-      fullPath: '/roommatePost'
-      preLoaderRoute: typeof RoommatePostImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/roommatePost';
+      path: '/roommatePost';
+      fullPath: '/roommatePost';
+      preLoaderRoute: typeof RoommatePostImport;
+      parentRoute: typeof rootRoute;
+    };
     '/write': {
-      id: '/write'
-      path: '/write'
-      fullPath: '/write'
-      preLoaderRoute: typeof WriteImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/write';
+      path: '/write';
+      fullPath: '/write';
+      preLoaderRoute: typeof WriteImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/edit': typeof EditRoute
-  '/login': typeof LoginRoute
-  '/myProfile': typeof MyProfileRoute
-  '/post': typeof PostRoute
-  '/user': typeof UserRoute
-  '/roommatePost': typeof RoommatePostRoute
-  '/write': typeof WriteRoute
+  '/': typeof IndexRoute;
+  '/edit': typeof EditRoute;
+  '/login': typeof LoginRoute;
+  '/myProfile': typeof MyProfileRoute;
+  '/post': typeof PostRoute;
+  '/user': typeof UserRoute;
+  '/roommatePost': typeof RoommatePostRoute;
+  '/write': typeof WriteRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/edit': typeof EditRoute
-  '/login': typeof LoginRoute
-  '/myProfile': typeof MyProfileRoute
-  '/post': typeof PostRoute
-  '/user': typeof UserRoute
-  '/roommatePost': typeof RoommatePostRoute
-  '/write': typeof WriteRoute
+  '/': typeof IndexRoute;
+  '/edit': typeof EditRoute;
+  '/login': typeof LoginRoute;
+  '/myProfile': typeof MyProfileRoute;
+  '/post': typeof PostRoute;
+  '/user': typeof UserRoute;
+  '/roommatePost': typeof RoommatePostRoute;
+  '/write': typeof WriteRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/edit': typeof EditRoute
-  '/login': typeof LoginRoute
-  '/myProfile': typeof MyProfileRoute
-  '/post': typeof PostRoute
-  '/user': typeof UserRoute
-  '/roommatePost': typeof RoommatePostRoute
-  '/write': typeof WriteRoute
+  __root__: typeof rootRoute;
+  '/': typeof IndexRoute;
+  '/edit': typeof EditRoute;
+  '/login': typeof LoginRoute;
+  '/myProfile': typeof MyProfileRoute;
+  '/post': typeof PostRoute;
+  '/user': typeof UserRoute;
+  '/roommatePost': typeof RoommatePostRoute;
+  '/write': typeof WriteRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/edit'
-    | '/login'
-    | '/myProfile'
-    | '/post'
-    | '/roommatePost'
-    | '/user'
-    | '/write'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/write'
-  id:
-    | '__root__'
-    | '/'
-    | '/edit'
-    | '/login'
-    | '/myProfile'
-    | '/post'
-    | '/user'
-    | '/roommatePost'
-    | '/write'
-  fileRoutesById: FileRoutesById
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/roommatePost' | '/user' | '/write';
+  fileRoutesByTo: FileRoutesByTo;
+  to: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/write';
+  id: '__root__' | '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/write';
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  EditRoute: typeof EditRoute
-  LoginRoute: typeof LoginRoute
-  MyProfileRoute: typeof MyProfileRoute
-  PostRoute: typeof PostRoute
-  UserRoute: typeof UserRoute
-  RoommatePostRoute: typeof RoommatePostRoute
-  WriteRoute: typeof WriteRoute
+  IndexRoute: typeof IndexRoute;
+  EditRoute: typeof EditRoute;
+  LoginRoute: typeof LoginRoute;
+  MyProfileRoute: typeof MyProfileRoute;
+  PostRoute: typeof PostRoute;
+  UserRoute: typeof UserRoute;
+  RoommatePostRoute: typeof RoommatePostRoute;
+  WriteRoute: typeof WriteRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -213,11 +197,9 @@ const rootRouteChildren: RootRouteChildren = {
   UserRoute: UserRoute,
   RoommatePostRoute: RoommatePostRoute,
   WriteRoute: WriteRoute,
-}
+};
 
-export const routeTree = rootRoute
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {
