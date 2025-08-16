@@ -68,7 +68,7 @@ function RouteComponent() {
                   <label className="block w-full items-center text-m font-semibold text-black">
                     성별 <span className="text-red-500 items-center">*</span>
                   </label>
-                  <div className="w-[200px] h-[30px] justify-start border border-[#7a7a7a] rounded-[5px] flex space-x-4">
+                  <div className="w-124.5 h-[30px] justify-start border border-[#7a7a7a] rounded-[5px] flex space-x-4">
                     <label className="flex items-center">
                       <input
                         type="radio"

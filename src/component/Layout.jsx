@@ -40,7 +40,6 @@ export default function Layout({ children }) {
           flex-1 
           overflow-y-auto 
           bg-white
-          p-8 
           w-full 
           box-border
         "
