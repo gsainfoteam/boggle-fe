@@ -13,7 +13,7 @@ export default function Layout({ children }) {
           className="
           flex-1 
           overflow-y-auto 
-          bg-green-500
+          bg-white
           p-3
           w-full 
           box-border

@@ -13,18 +13,18 @@ export default function Sidebar() {
       icon: "/icons/home-simple-door.svg",
       onClick: () => router.navigate({ to: "/", search: { type: "ALL" } }),
     },
-    { label: "게시글 작성하기", to: "/write", icon: "/icons/text.svg" },
+    { label: "게시글 작성하기", to: "/chooseCategory", icon: "/icons/text.svg" },
     { label: "채팅", to: "/chat", icon: "/icons/Chat2.svg" },
     { label: "마이 페이지", to: "/myprofile", icon: "/icons/user-circle.svg" },
   ];
 
   const categoryIcons = {
-    룸메: "/category icons/door.svg",
-    공동구매: "/category icons/cart.svg",
-    프로젝트: "/category icons/teammates.svg",
-    공부: "/category icons/book.svg",
-    취미: "/category icons/hobby.svg",
-    배달: "/category icons/curtlery.svg",
+    룸메: "/category-icons/roommateW.svg",
+    공동구매: "/category-icons/shoppingcartB.svg",
+    프로젝트: "/category-icons/teammates.svg",
+    공부: "/category-icons/book.svg",
+    취미: "/category-icons/hobby.svg",
+    배달: "/category-icons/curtlery.svg",
   };
 
   // 카테고리 버튼 정보 배열 (type 값이 모두 다르게!)
