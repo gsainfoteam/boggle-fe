@@ -11,7 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root';
-import { Route as WriteImport } from './routes/write';
+import { Route as ChooseCategoryImport } from './routes/chooseCategory';
 import { Route as UserImport } from './routes/user';
 import { Route as RoommatePostImport } from './routes/roommatePost';
 import { Route as PostImport } from './routes/post';
@@ -19,12 +19,19 @@ import { Route as MyProfileImport } from './routes/myProfile';
 import { Route as LoginImport } from './routes/login';
 import { Route as EditImport } from './routes/edit';
 import { Route as IndexImport } from './routes/index';
+import { Route as RedirectImport } from './routes/redirect';
 
 // Create/Update Routes
 
-const WriteRoute = WriteImport.update({
-  id: '/write',
-  path: '/write',
+const ChooseCategoryRoute = ChooseCategoryImport.update({
+  id: '/chooseCategory',
+  path: '/chooseCategory',
+  getParentRoute: () => rootRoute,
+} as any);
+
+const RedirectRoute = RedirectImport.update({
+  id: '/redirect',
+  path: '/redirect',
   getParentRoute: () => rootRoute,
 } as any);
 
@@ -142,7 +149,7 @@ export interface FileRoutesByFullPath {
   '/post': typeof PostRoute;
   '/user': typeof UserRoute;
   '/roommatePost': typeof RoommatePostRoute;
-  '/write': typeof WriteRoute;
+  '/chooseCategory': typeof ChooseCategoryRoute;
 }
 
 export interface FileRoutesByTo {
@@ -165,15 +172,15 @@ export interface FileRoutesById {
   '/post': typeof PostRoute;
   '/user': typeof UserRoute;
   '/roommatePost': typeof RoommatePostRoute;
-  '/write': typeof WriteRoute;
+  '/chooseCategory': typeof ChooseCategoryRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/roommatePost' | '/user' | '/write';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/write';
-  id: '__root__' | '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/write';
+  to: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/chooseCategory';
+  id: '__root__' | '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/chooseCategory';
   fileRoutesById: FileRoutesById;
 }
 
@@ -185,7 +192,7 @@ export interface RootRouteChildren {
   PostRoute: typeof PostRoute;
   UserRoute: typeof UserRoute;
   RoommatePostRoute: typeof RoommatePostRoute;
-  WriteRoute: typeof WriteRoute;
+  ChooseCategoryRoute: typeof ChooseCategoryRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -196,10 +203,13 @@ const rootRouteChildren: RootRouteChildren = {
   PostRoute: PostRoute,
   UserRoute: UserRoute,
   RoommatePostRoute: RoommatePostRoute,
-  WriteRoute: WriteRoute,
+  ChooseCategoryRoute: ChooseCategoryRoute,
+  RedirectRoute: RedirectRoute,
 };
 
 export const routeTree = rootRoute._addFileChildren(rootRouteChildren)._addFileTypes<FileRouteTypes>();
+
+export const redirectRoute = RedirectRoute;
 
 /* ROUTE_MANIFEST_START
 {

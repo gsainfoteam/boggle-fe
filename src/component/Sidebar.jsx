@@ -38,13 +38,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <nav
-      className="
-      p-[10px]
-      gap-[10px]
-      h-full
-    "
-    >
+    <nav className="p-[10px] gap-[10px] h-full">
       {/* 상단 네비게이션 버튼 */}
       <div className="flex flex-col gap-1 mb-4">
         {navItems.map((item) => (

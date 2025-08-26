@@ -1,12 +1,13 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import React from "react";
-import { login } from "../api/auth/login";
+import { login } from "../api/user/login";
 
 export const Route = createFileRoute("/login")({
   component: LoginComponent,
 });
 
-function LoginForm() {
+async function LoginForm() {
+  console.log('start')
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
@@ -18,6 +19,15 @@ function LoginForm() {
     document.cookie = `refreshToken=${res.refresh_token}; path=/;`;
     navigate({ to: "/" });
   };
+  
+  const authorizeUrl = new URL('https://idp.gistory.me/authorize');
+  authorizeUrl.searchParams.append('client_id', '5aec0c22-288b-478f-8bbc-92cfd89fc91d');
+  authorizeUrl.searchParams.append('redirect_uri', 'http://localhost:5173/redirect');
+  authorizeUrl.searchParams.append('scope', ['profile','student_id','email'].join(' '));
+  authorizeUrl.searchParams.append('response_type', ['code'].join(' '));
+  authorizeUrl.searchParams.append('code_challenge', 'code_challenge');
+  authorizeUrl.searchParams.append('code_challenge_method', 'plain');
+  location = authorizeUrl;
 
   return (
     <form

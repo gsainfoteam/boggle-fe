@@ -18,20 +18,8 @@ export default function Header() {
   }, [token]);
 
   return (
-    <header
-      className="
-        w-full
-        h-[55px]
-        justify-between
-        items-center
-        py-[8px]
-        px-[16px]
-        flex
-        sticky
-        top-0
-        z-10
-      "
-    >
+    <header className="flex w-full items-center justify-between bg-white py-2 px-[10px] text-text">
+    
       <div
         className="
           flex

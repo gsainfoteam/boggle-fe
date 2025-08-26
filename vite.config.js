@@ -9,7 +9,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://13.125.147.62',
+        target: 'http://boggle.is-an.ai',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
