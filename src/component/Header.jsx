@@ -34,8 +34,8 @@ export default function Header() {
           src="/icons/boggle-logo.svg"
           alt="BOGGLE logo"
           className="
-            h-[34px]
-            w-[34px]
+            h-[24px]
+            w-[24px]
             object-contain
             block
           "
@@ -43,7 +43,7 @@ export default function Header() {
         <b
           className="
             font-normal
-            text-[28px]
+            text-[24px]
             leading-[1]
             text-black
           "
