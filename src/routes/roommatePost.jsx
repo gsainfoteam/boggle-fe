@@ -860,12 +860,11 @@ function RouteComponent() {
                 
                   <div className="border-t border-[#d9d9d9] my-3" />
                   
-                                      {/* 프로필 미리보기 - 가로 배치 */}
                     <div className="flex gap-[20px] mb-6">
                       {/* 내 프로필 미리보기 */}
                       <div className="flex-1">
                         <h2 className="text-l font-bold text-[#4b7eff] mb-3">000의 프로필</h2>
-                        <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+                        <div className="bg-[#CAD3EA]/21 p-4 rounded-lg space-y-2">
                           <div className="flex flex-col w-[280px] gap-[5px]">
                             <h2 className="text-l font-bold text-[#4b7eff]">기본 정보</h2>
                             <div><span className="text-sm font-semibold">성별:</span> {myProfile.gender || '-'}</div>
@@ -901,7 +900,7 @@ function RouteComponent() {
                       {/* 희망 룸메 프로필 미리보기 */}
                       <div className="flex-1">
                         <h2 className="text-l font-bold text-[#ad6dff] mb-3">희망 룸메 프로필</h2>
-                        <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+                        <div className="bg-[#eee1ff]/30 p-4 rounded-lg space-y-2">
                           <div className="flex flex-col w-[280px] gap-[5px]">
                             <div><span className="text-sm font-semibold">학년:</span> {desiredProfile.grade || '-'}</div>
                             <div><span className="text-sm font-semibold">나이:</span> {desiredProfile.age || '-'}</div>
