@@ -764,66 +764,92 @@ function RouteComponent() {
               ) : (
                 // 3단계: 미리보기
                 <>
-                <span className="text-xl text-center text-[#28a745] font-bold tracking-[2px]">
-                  모집글 미리보기
-                </span>
-
+                <div className="flex flex-col items-center w-[350px]">
+                  <span className="text-xl text-center font-pretendard font-bold mb-[5px]">
+                    룸메이트 구합니다!
+                  </span>
+                  
+                  <div className="flex items-center justify-center gap-[8px]">
+                    <span className="text-[10px]">작성자: 김도현</span>
+                    <div className="w-px h-3 bg-[#dadada]"></div>
+                    <span className="text-[10px]">게시일: 2026.07.18 (SAT)</span>
+                    <div className="w-px h-3 bg-[#dadada]"></div>
+                    <span className="text-[10px]">마감일: 2026.07.26 (SAT)</span>
+                  </div>
+                
                   <div className="border-t border-[#d9d9d9] my-3" />
                   
-                  {/* 내 프로필 미리보기 */}
-                  <div className="mb-6">
-                    <h2 className="text-l font-bold text-[#4b7eff] mb-3">나의 프로필</h2>
-                    <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div><span className="font-semibold">성별:</span> {myProfile.gender || '-'}</div>
-                        <div><span className="font-semibold">학년:</span> {myProfile.grade || '-'}</div>
-                        <div><span className="font-semibold">나이:</span> {myProfile.age || '-'}</div>
-                        <div><span className="font-semibold">MBTI:</span> {myProfile.mbti || '-'}</div>
-                        <div><span className="font-semibold">신청학기:</span> {myProfile.semester || '-'}</div>
-                        <div><span className="font-semibold">원하는 호실:</span> {myProfile.room || '-'}</div>
-                        <div><span className="font-semibold">수면시간:</span> {myProfile.sleepStart} ~ {myProfile.sleepEnd}</div>
-                        <div><span className="font-semibold">코골이:</span> {myProfile.snoring || '-'}</div>
-                        <div><span className="font-semibold">이갈이:</span> {myProfile.teethGrinding || '-'}</div>
-                        <div><span className="font-semibold">담배:</span> {myProfile.smoking || '-'}</div>
-                        <div><span className="font-semibold">냉장고:</span> {myProfile.refrigerator || '-'}</div>
-                        <div><span className="font-semibold">WIFI:</span> {myProfile.wifi || '-'}</div>
-                        <div><span className="font-semibold">현재 거주중:</span> {myProfile.isCurrentlyResiding ? '예' : '아니오'}</div>
-                        {myProfile.other && <div className="col-span-2"><span className="font-semibold">기타:</span> {myProfile.other}</div>}
-                      </div>
-                    </div>
-                  </div>
+                                      {/* 프로필 미리보기 - 가로 배치 */}
+                    <div className="flex gap-[20px] mb-6">
+                      {/* 내 프로필 미리보기 */}
+                      <div className="flex-1">
+                        <h2 className="text-l font-bold text-[#4b7eff] mb-3">000의 프로필</h2>
+                        <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+                          <div className="flex flex-col w-[280px] gap-[5px]">
+                            <h2 className="text-l font-bold text-[#4b7eff]">기본 정보</h2>
+                            <div><span className="text-sm font-semibold">성별:</span> {myProfile.gender || '-'}</div>
+                            <div><span className="text-sm font-semibold">학년:</span> {myProfile.grade || '-'}</div>
+                            <div><span className="text-sm font-semibold">나이:</span> {myProfile.age || '-'}</div>
+                            <div><span className="text-sm font-semibold">MBTI:</span> {myProfile.mbti || '-'}</div>
+                            <div><span className="text-sm font-semibold">모집학기:</span> {myProfile.semester || '-'}</div>
+                            <div><span className="text-sm font-semibold">원하는 호실:</span> {myProfile.room || '-'}</div>
+                            <div><span className="text-sm font-semibold">현재 거주중:</span> {myProfile.isCurrentlyResiding ? 'O' : 'X'}</div>
 
-                  {/* 희망 룸메 프로필 미리보기 */}
-                  <div className="mb-6">
-                    <h2 className="text-l font-bold text-[#ad6dff] mb-3">희망 룸메 프로필</h2>
-                    <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                      <div className="grid grid-cols-2 gap-4">
-                        <div><span className="font-semibold">희망 학년:</span> {desiredProfile.grade || '-'}</div>
-                        <div><span className="font-semibold">희망 나이:</span> {desiredProfile.age || '-'}</div>
-                        <div><span className="font-semibold">희망 수면시간:</span> {desiredProfile.sleepStart} ~ {myProfile.sleepEnd}</div>
-                        <div><span className="font-semibold">희망 코골이:</span> {desiredProfile.snoring || '-'}</div>
-                        <div><span className="font-semibold">희망 이갈이:</span> {desiredProfile.teethGrinding || '-'}</div>
-                        <div><span className="font-semibold">희망 담배:</span> {desiredProfile.smoking || '-'}</div>
+                            <div className="border-t border-[#d9d9d9]" />
+                            
+                            <h2 className="text-l font-bold text-[#4b7eff]">생활 습관</h2>
+                            <div><span className="text-sm font-semibold">수면시간:</span> {myProfile.sleepStart} ~ {myProfile.sleepEnd}</div>
+                            <div><span className="text-sm font-semibold">코골이:</span> {myProfile.snoring || '-'}</div>
+                            <div><span className="text-sm font-semibold">이갈이:</span> {myProfile.teethGrinding || '-'}</div>
+                            <div><span className="text-sm font-semibold">흡연:</span> {myProfile.smoking || '-'}</div>
+
+                            <div className="border-t border-[#d9d9d9]" />
+
+                            <h2 className="text-l font-bold text-[#4b7eff]">물품</h2>
+                            <div><span className="text-sm font-semibold">냉장고:</span> {myProfile.refrigerator || '-'}</div>
+                            <div><span className="text-sm font-semibold">WIFI:</span> {myProfile.wifi || '-'}</div>
+                            
+                            <div className="border-t border-[#d9d9d9]" />
+
+                            <h2 className="text-l font-bold text-[#4b7eff]">추가 정보</h2>
+                            <span className="font-semibold"> {myProfile.other}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 희망 룸메 프로필 미리보기 */}
+                      <div className="flex-1">
+                        <h2 className="text-l font-bold text-[#ad6dff] mb-3">희망 룸메 프로필</h2>
+                        <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+                          <div className="flex flex-col w-[280px] gap-[5px]">
+                            <div><span className="text-sm font-semibold">학년:</span> {desiredProfile.grade || '-'}</div>
+                            <div><span className="text-sm font-semibold">나이:</span> {desiredProfile.age || '-'}</div>
+                            <div><span className="text-sm font-semibold">수면시간:</span> {desiredProfile.sleepStart} ~ {myProfile.sleepEnd}</div>
+                            <div><span className="text-sm font-semibold">코골이:</span> {desiredProfile.snoring || '-'}</div>
+                            <div><span className="text-sm font-semibold">이갈이:</span> {desiredProfile.teethGrinding || '-'}</div>
+                            <div><span className="text-sm font-semibold">흡연:</span> {desiredProfile.smoking || '-'}</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
                   {/* 버튼들 */}
                   <div className="flex justify-center gap-4 mt-[10px]">
                     <button
                       type="button"
                       onClick={handlePrevStep}
-                      className="w-40 h-7 text-sm bg-[#d9d9d9] hover:bg-gray-600 text-white font-semibold rounded-[7px] transition duration-200"
+                      className="w-40 h-7 text-sm border border-[#4b7eff] hover:bg-gray-600 text-[#4b7eff] font-semibold rounded-[7px] transition duration-200"
                     >
-                      이전 단계
+                      이전
                     </button>
                     <button
                       type="submit"
-                      className="w-40 h-7 text-sm bg-[#28a745] hover:bg-green-700 text-white font-semibold rounded-[7px] transition duration-200"
+                      className="w-40 h-7 text-sm bg-[#4b7eff] hover:bg-blue-700 text-white font-semibold rounded-[7px] transition duration-200"
                     >
-                      최종 제출
+                      게시하기
                     </button>
                   </div>
+                </div>
                 </>
               )}
             </div>
