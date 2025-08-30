@@ -25,6 +25,7 @@ export default function Post() {
       setType(post.type);
       setTags(post.tags);
       setAuthor(post.author);
+      setImage(post.image);
       const createDate = new Date(post.createdAt);
       setCreatedAt(`${createDate.getFullYear()}년 ${createDate.getMonth() + 1}월 ${createDate.getDate()}일`);
       setParticipants(post.participants);

@@ -48,7 +48,7 @@ export async function createRoommatePost(post) {
 }
 
 function RouteComponent() {
-  const [step, setStep] = useState(1); // 1단계: 내 프로필, 2단계: 희망 룸메
+  const [step, setStep] = useState(1); // 1단계: 내 프로필, 2단계: 희망 룸메, 3단계: 미리보기, 3단계: 미리보기
   
   // 내 프로필 데이터
   const [myProfile, setMyProfile] = useState({
@@ -96,11 +96,11 @@ function RouteComponent() {
   };
 
   const handleNextStep = () => {
-    setStep(2);
+    setStep(prev => prev + 1);
   };
 
   const handlePrevStep = () => {
-    setStep(1);
+    setStep(prev => prev - 1);
   };
 
   const handleSubmit = async (e) => {
@@ -137,6 +137,12 @@ function RouteComponent() {
     
     console.log('전체 폼 데이터:', post);
     await createRoommatePost(post);
+  };
+
+  // 미리보기 데이터 생성
+  const previewData = {
+    myProfile,
+    desiredProfile
   };
 
   return (
@@ -551,7 +557,7 @@ function RouteComponent() {
                     </button>
                   </div>
                 </>
-              ) : (
+              ) : step === 2 ? (
                 // 2단계: 희망 룸메 프로필 입력
                 <>
                 <span className="text-xl text-center text-[#ad6dff] font-bold tracking-[2px]">
@@ -747,10 +753,75 @@ function RouteComponent() {
                       이전 단계
                     </button>
                     <button
-                      type="submit"
+                      type="button"
+                      onClick={handleNextStep}
                       className="w-40 h-7 text-sm bg-[#ad6dff] hover:bg-blue-700 text-white font-semibold rounded-[7px] transition duration-200"
                     >
-                      모집글 미리보기
+                      다음 단계
+                    </button>
+                  </div>
+                </>
+              ) : (
+                // 3단계: 미리보기
+                <>
+                <span className="text-xl text-center text-[#28a745] font-bold tracking-[2px]">
+                  모집글 미리보기
+                </span>
+
+                  <div className="border-t border-[#d9d9d9] my-3" />
+                  
+                  {/* 내 프로필 미리보기 */}
+                  <div className="mb-6">
+                    <h2 className="text-l font-bold text-[#4b7eff] mb-3">나의 프로필</h2>
+                    <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div><span className="font-semibold">성별:</span> {myProfile.gender || '-'}</div>
+                        <div><span className="font-semibold">학년:</span> {myProfile.grade || '-'}</div>
+                        <div><span className="font-semibold">나이:</span> {myProfile.age || '-'}</div>
+                        <div><span className="font-semibold">MBTI:</span> {myProfile.mbti || '-'}</div>
+                        <div><span className="font-semibold">신청학기:</span> {myProfile.semester || '-'}</div>
+                        <div><span className="font-semibold">원하는 호실:</span> {myProfile.room || '-'}</div>
+                        <div><span className="font-semibold">수면시간:</span> {myProfile.sleepStart} ~ {myProfile.sleepEnd}</div>
+                        <div><span className="font-semibold">코골이:</span> {myProfile.snoring || '-'}</div>
+                        <div><span className="font-semibold">이갈이:</span> {myProfile.teethGrinding || '-'}</div>
+                        <div><span className="font-semibold">담배:</span> {myProfile.smoking || '-'}</div>
+                        <div><span className="font-semibold">냉장고:</span> {myProfile.refrigerator || '-'}</div>
+                        <div><span className="font-semibold">WIFI:</span> {myProfile.wifi || '-'}</div>
+                        <div><span className="font-semibold">현재 거주중:</span> {myProfile.isCurrentlyResiding ? '예' : '아니오'}</div>
+                        {myProfile.other && <div className="col-span-2"><span className="font-semibold">기타:</span> {myProfile.other}</div>}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 희망 룸메 프로필 미리보기 */}
+                  <div className="mb-6">
+                    <h2 className="text-l font-bold text-[#ad6dff] mb-3">희망 룸메 프로필</h2>
+                    <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div><span className="font-semibold">희망 학년:</span> {desiredProfile.grade || '-'}</div>
+                        <div><span className="font-semibold">희망 나이:</span> {desiredProfile.age || '-'}</div>
+                        <div><span className="font-semibold">희망 수면시간:</span> {desiredProfile.sleepStart} ~ {myProfile.sleepEnd}</div>
+                        <div><span className="font-semibold">희망 코골이:</span> {desiredProfile.snoring || '-'}</div>
+                        <div><span className="font-semibold">희망 이갈이:</span> {desiredProfile.teethGrinding || '-'}</div>
+                        <div><span className="font-semibold">희망 담배:</span> {desiredProfile.smoking || '-'}</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 버튼들 */}
+                  <div className="flex justify-center gap-4 mt-[10px]">
+                    <button
+                      type="button"
+                      onClick={handlePrevStep}
+                      className="w-40 h-7 text-sm bg-[#d9d9d9] hover:bg-gray-600 text-white font-semibold rounded-[7px] transition duration-200"
+                    >
+                      이전 단계
+                    </button>
+                    <button
+                      type="submit"
+                      className="w-40 h-7 text-sm bg-[#28a745] hover:bg-green-700 text-white font-semibold rounded-[7px] transition duration-200"
+                    >
+                      최종 제출
                     </button>
                   </div>
                 </>
