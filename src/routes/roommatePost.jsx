@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import Layout from "../component/Layout";
 import { useState } from 'react'
 
@@ -7,48 +7,107 @@ export const Route = createFileRoute('/roommatePost')({
 })
 
 export async function createRoommatePost(post) {
-  const response = await fetch(`/post`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      type: "ROOMMATE",
+  try {
+    // 백엔드 서버 URL을 환경변수나 설정으로 관리
+    const API_BASE_URL = 'http://boggle.is-an.ai';
+    
+    console.log('백엔드로 전송할 데이터:', {
       title: post.title,
       content: post.content,
-      
-      tags: [],
-      maxParticipants: 2,
+      type: "PROJECT",
+      tags: post.tags || [],
+      maxParticipants: 5,
+      deadline: post.deadline || "2000-01-01",
+      imageUrls: post.imageUrls || [],
       roommateDetails: {
-        // 내 프로필
-        myGrade: post.myGrade,
-        myRoom: post.myRoom,
-        mySemester: post.mySemester,
-        myRefrigerator: post.myRefrigerator,
-        myWifi: post.myWifi,
-        mySnoring: post.mySnoring,
-        mySmoking: post.mySmoking,
-        mySleepTime: post.mySleepTime,
-        myWakeUpTime: post.myWakeUpTime,
-        myMbti: post.myMbti,
-        
-        // 희망 룸메 프로필
-        rmGrade: post.rmGrade,
-        rmRoom: post.rmRoom,
-        rmSemester: post.rmSemester,
+        age: post.myAge,
+        gender: post.myGender,
+        grade: post.myGrade,
+        room: post.myRoom,
+        semester: post.mySemester,
+        refrigerator: post.myRefrigerator,
+        wifi: post.myWifi,
+        snoring: post.mySnoring,
+        smoking: post.mySmoking,
+        sleepTime: post.mySleepTime,
+        wakeUpTime: post.myWakeUpTime,
+        mbti: post.myMbti,
+        rmAge: post.rmAge,
         rmRefrigerator: post.rmRefrigerator,
         rmWifi: post.rmWifi,
         rmSnoring: post.rmSnoring,
-        rmSmoking: post.rmSmoking,
-        rmMbti: post.rmMbti
+        rmSmoking: post.rmSmoking
       }
-    })
-  });
-  return response.data;
+    });
+
+    const response = await fetch(`${API_BASE_URL}/post`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer asdf`,
+      },
+      body: JSON.stringify({
+        title: post.title,
+        content: post.content,
+        type: "PROJECT",
+        tags: post.tags || [],
+        maxParticipants: 5,
+        deadline: post.deadline || "2000-01-01",
+        imageUrls: post.imageUrls || [],
+        roommateDetails: {
+          age: post.myAge,
+          gender: post.myGender,
+          grade: post.myGrade,
+          room: post.myRoom,
+          semester: post.mySemester,
+          refrigerator: post.myRefrigerator,
+          wifi: post.myWifi,
+          snoring: post.mySnoring,
+          smoking: post.mySmoking,
+          sleepTime: post.mySleepTime,
+          wakeUpTime: post.myWakeUpTime,
+          mbti: post.myMbti,
+          rmAge: post.rmAge,
+          rmRefrigerator: post.rmRefrigerator,
+          rmWifi: post.rmWifi,
+          rmSnoring: post.rmSnoring,
+          rmSmoking: post.rmSmoking
+        }
+      })
+    });
+
+    console.log('백엔드 응답 상태:', response.status);
+    console.log('백엔드 응답 헤더:', response.headers);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('백엔드 에러 응답:', errorText);
+      throw new Error(`백엔드 에러: ${response.status} - ${errorText}`);
+    }
+
+    const responseData = await response.json();
+    console.log('백엔드 응답 데이터:', responseData);
+    console.log('응답 데이터 타입:', typeof responseData);
+    console.log('응답 데이터 키들:', Object.keys(responseData));
+
+    // response.data가 아니라 responseData를 반환
+    return responseData;
+    
+  } catch (error) {
+    console.error('createRoommatePost 에러:', error);
+    
+    // 네트워크 에러인 경우 더 명확한 메시지 표시
+    if (error.message === 'Failed to fetch') {
+      throw new Error('백엔드 서버에 연결할 수 없습니다. 서버가 실행 중인지 확인해주세요.');
+    }
+    
+    throw error;
+  }
 }
 
 function RouteComponent() {
-  const [step, setStep] = useState(1); // 1단계: 내 프로필, 2단계: 희망 룸메, 3단계: 미리보기, 3단계: 미리보기
+  const navigate = useNavigate();
+  const [step, setStep] = useState(1); // 1단계: 내 프로필, 2단계: 희망 룸메, 3단계: 미리보기
   
   // 내 프로필 데이터
   const [myProfile, setMyProfile] = useState({
@@ -106,37 +165,69 @@ function RouteComponent() {
   const handleSubmit = async (e) => {
     e.preventDefault();              
 
-    
-    // 상태에서 직접 값을 가져와서 post 객체 생성
-    const post = {
-      title: "룸메이트 찾기",
-      content: "룸메이트를 찾습니다",
+    try {
+      // 상태에서 직접 값을 가져와서 post 객체 생성
+      const post = {
+        title: "룸메이트 찾기",
+        content: "룸메이트를 찾습니다",
+        tags: ["룸메이트", "함께살기"],
+        deadline: "2025-01-01",
+        imageUrls: [],
+        
+        // 내 프로필
+        myAge: parseInt(myProfile.age) || 20,
+        myGender: myProfile.gender,
+        myGrade: myProfile.grade,
+        myRoom: myProfile.room,
+        mySemester: myProfile.semester,
+        myRefrigerator: myProfile.refrigerator === '있어요',
+        myWifi: myProfile.wifi === '있어요',
+        mySnoring: myProfile.snoring === '있어요',
+        mySmoking: myProfile.smoking === '해요',
+        mySleepTime: myProfile.sleepStart,
+        myWakeUpTime: myProfile.sleepEnd,
+        myMbti: myProfile.mbti,
+        
+        // 희망 룸메 프로필
+        rmAge: parseInt(desiredProfile.age) || 20,
+        rmRefrigerator: desiredProfile.refrigerator === '있어요',
+        rmWifi: desiredProfile.wifi === '있어요',
+        rmSnoring: desiredProfile.snoring === '있어요',
+        rmSmoking: desiredProfile.smoking === '해요'
+      };
       
-      // 내 프로필
-      myGrade: myProfile.grade,
-      myRoom: myProfile.room,
-      mySemester: myProfile.semester,
-      myRefrigerator: myProfile.refrigerator,
-      myWifi: myProfile.wifi,
-      mySnoring: myProfile.snoring,
-      mySmoking: myProfile.smoking,
-      mySleepTime: myProfile.sleepStart,
-      myWakeUpTime: myProfile.sleepEnd,
-      myMbti: myProfile.mbti,
+      console.log('전체 폼 데이터:', post);
       
-      // 희망 룸메 프로필
-      rmGrade: desiredProfile.grade,
-      rmRoom: desiredProfile.room,
-      rmSemester: desiredProfile.semester,
-      rmRefrigerator: desiredProfile.refrigerator,
-      rmWifi: desiredProfile.wifi,
-      rmSnoring: desiredProfile.snoring,
-      rmSmoking: desiredProfile.smoking,
-      rmMbti: desiredProfile.mbti
-    };
-    
-    console.log('전체 폼 데이터:', post);
-    await createRoommatePost(post);
+      // 백엔드로 전송하고 응답 받기
+      const response = await createRoommatePost(post);
+      console.log('백엔드 응답:', response);
+      
+      // response.id 디버깅
+      console.log('=== RESPONSE ID 디버깅 ===');
+      console.log('response 타입:', typeof response);
+      console.log('response 전체:', response);
+      console.log('response.id:', response?.id);
+      console.log('response.id 타입:', typeof response?.id);
+      console.log('response.id 존재 여부:', response?.id !== undefined);
+      console.log('response.id null 체크:', response?.id !== null);
+      console.log('response.id 빈 문자열 체크:', response?.id !== '');
+      console.log('response 키들:', Object.keys(response || {}));
+      
+      if (response && response.id) {
+        console.log('페이지 이동:', `/roommatePost/${response.id}`);
+        // 성공적으로 생성된 경우, 해당 포스트 페이지로 이동
+        navigate({ to: `/roommatePost/${response.id}` });
+      } else {
+        console.error('포스트 생성 실패: 포스트 ID 없음');
+        console.error('response:', response);
+        console.error('response.id:', response?.id);
+        alert('포스트 생성에 실패했습니다.');
+      }
+      
+    } catch (error) {
+      console.error('포스트 생성 중 오류:', error);
+      alert('포스트 생성 중 오류가 발생했습니다.');
+    }
   };
 
   // 미리보기 데이터 생성
@@ -602,19 +693,9 @@ function RouteComponent() {
                         focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="">Select option...</option>
-                      <option value="18세">18세</option>
-                      <option value="19세">19세</option>
-                      <option value="20세">20세</option>
-                      <option value="21세">21세</option>
-                      <option value="22세">22세</option>
-                      <option value="23세">23세</option>
-                      <option value="24세">24세</option>
-                      <option value="25세">25세</option>
-                      <option value="26세">26세</option>
-                      <option value="27세">27세</option>
-                      <option value="28세">28세</option>
-                      <option value="29세">29세</option>
-                      <option value="30세">30세</option>
+                      {Array.from({length: 30}, (_, i) => i + 18).map(age => (
+                        <option key={age} value={age}>{age}세</option>
+                      ))}
                       <option value="상관없음">상관없음</option>
                     </select>
                   </div>

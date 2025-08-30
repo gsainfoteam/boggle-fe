@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root';
 import { Route as ChooseCategoryImport } from './routes/chooseCategory';
 import { Route as UserImport } from './routes/user';
 import { Route as RoommatePostImport } from './routes/roommatePost';
+import { Route as RoommatePostIdImport } from './routes/roommatePost.$id';
 import { Route as PostImport } from './routes/post';
 import { Route as MyProfileImport } from './routes/myProfile';
 import { Route as LoginImport } from './routes/login';
@@ -45,6 +46,12 @@ const RoommatePostRoute = RoommatePostImport.update({
   id: '/roommatePost',
   path: '/roommatePost',
   getParentRoute: () => rootRoute,
+} as any);
+
+const RoommatePostIdRoute = RoommatePostIdImport.update({
+  id: '/roommatePost/$id',
+  path: '/roommatePost/$id',
+  getParentRoute: () => RoommatePostRoute,
 } as any);
 
 const PostRoute = PostImport.update({
@@ -129,6 +136,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RoommatePostImport;
       parentRoute: typeof rootRoute;
     };
+    '/roommatePost/$id': {
+      id: '/roommatePost/$id';
+      path: '/roommatePost/$id';
+      fullPath: '/roommatePost/$id';
+      preLoaderRoute: typeof RoommatePostIdImport;
+      parentRoute: typeof RoommatePostRoute;
+    };
     '/write': {
       id: '/write';
       path: '/write';
@@ -149,6 +163,7 @@ export interface FileRoutesByFullPath {
   '/post': typeof PostRoute;
   '/user': typeof UserRoute;
   '/roommatePost': typeof RoommatePostRoute;
+  '/roommatePost/$id': typeof RoommatePostIdRoute;
   '/chooseCategory': typeof ChooseCategoryRoute;
 }
 
@@ -160,6 +175,7 @@ export interface FileRoutesByTo {
   '/post': typeof PostRoute;
   '/user': typeof UserRoute;
   '/roommatePost': typeof RoommatePostRoute;
+  '/roommatePost/$id': typeof RoommatePostIdRoute;
   '/write': typeof WriteRoute;
 }
 
@@ -172,15 +188,16 @@ export interface FileRoutesById {
   '/post': typeof PostRoute;
   '/user': typeof UserRoute;
   '/roommatePost': typeof RoommatePostRoute;
+  '/roommatePost/$id': typeof RoommatePostIdRoute;
   '/chooseCategory': typeof ChooseCategoryRoute;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/roommatePost' | '/user' | '/write';
+  fullPaths: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/roommatePost' | '/roommatePost/$id' | '/user' | '/write';
   fileRoutesByTo: FileRoutesByTo;
-  to: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/chooseCategory';
-  id: '__root__' | '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/chooseCategory';
+  to: '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/roommatePost/$id' | '/chooseCategory';
+  id: '__root__' | '/' | '/edit' | '/login' | '/myProfile' | '/post' | '/user' | '/roommatePost' | '/roommatePost/$id' | '/chooseCategory';
   fileRoutesById: FileRoutesById;
 }
 
@@ -192,6 +209,7 @@ export interface RootRouteChildren {
   PostRoute: typeof PostRoute;
   UserRoute: typeof UserRoute;
   RoommatePostRoute: typeof RoommatePostRoute;
+  RoommatePostIdRoute: typeof RoommatePostIdRoute;
   ChooseCategoryRoute: typeof ChooseCategoryRoute;
 }
 
@@ -203,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   PostRoute: PostRoute,
   UserRoute: UserRoute,
   RoommatePostRoute: RoommatePostRoute,
+  RoommatePostIdRoute: RoommatePostIdRoute,
   ChooseCategoryRoute: ChooseCategoryRoute,
   RedirectRoute: RedirectRoute,
 };
