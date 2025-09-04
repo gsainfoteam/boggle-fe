@@ -74,9 +74,9 @@ function ChooseCategoryComponent() {
             클릭하면 */}
               <div className="flex flex-col items-center justify-center"></div>
                 <img 
-                  src={category.icon} 
+                  src={category.icon}
                   alt={category.name}
-                  className="h-[40px]" 
+                  className="h-[40px] hover:invert-[41%] hover:sepia-[87%] hover:saturate-[3086%] hover:hue-rotate-[217deg] hover:brightness-[102%] hover:contrast-[101%];" 
                 />
               {/* 바로 위 div는 between으로 아이콘 배치 예쁘게 하기 위함. */}
               <span className="text-lg font-semibold">{category.name}</span>

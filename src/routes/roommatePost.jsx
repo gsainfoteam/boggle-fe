@@ -7,102 +7,83 @@ export const Route = createFileRoute('/roommatePost')({
 })
 
 export async function createRoommatePost(post) {
-  try {
-    // 백엔드 서버 URL을 환경변수나 설정으로 관리
-    const API_BASE_URL = 'http://boggle.is-an.ai';
+  console.log('백엔드로 전송할 데이터:', {
+    title: post.title,
+    content: post.content,
+    type: "PROJECT",
+    tags: post.tags,
+    maxParticipants: 5,
+    deadline: post.deadline,
+    imageUrls: post.imageUrls || [],
     
-    console.log('백엔드로 전송할 데이터:', {
-      title: post.title,
-      content: post.content,
-      type: "PROJECT",
-      tags: post.tags || [],
-      maxParticipants: 5,
-      deadline: post.deadline || "2000-01-01",
-      imageUrls: post.imageUrls || [],
-      roommateDetails: {
-        age: post.myAge,
-        gender: post.myGender,
-        grade: post.myGrade,
-        room: post.myRoom,
-        semester: post.mySemester,
-        refrigerator: post.myRefrigerator,
-        wifi: post.myWifi,
-        snoring: post.mySnoring,
-        smoking: post.mySmoking,
-        sleepTime: post.mySleepTime,
-        wakeUpTime: post.myWakeUpTime,
-        mbti: post.myMbti,
-        rmAge: post.rmAge,
-        rmRefrigerator: post.rmRefrigerator,
-        rmWifi: post.rmWifi,
-        rmSnoring: post.rmSnoring,
-        rmSmoking: post.rmSmoking
-      }
-    });
+    roommateDetails: {
+      age: post.age,
+      gender: post.gender,
+      grade: post.grade,
+      room: post.room,
+      semester: post.semester,
+      refrigerator: post.refrigerator,
+      wifi: post.wifi,
+      snoring: post.mySnoring,
+      smoking: post.smoking,
+      sleepTime: post.sleepTime,
+      wakeUpTime: post.wakeUpTime,
+      mbti: post.mbti,
+      rmAge: post.rmAge,
+      rmGrade: post.rmGrade,
+      rmRefrigerator: post.rmRefrigerator,
+      rmWifi: post.rmWifi,
+      rmSnoring: post.rmSnoring,
+      rmGrindingTeeth: post.rmGrindingTeeth,
+      rmSmoking: post.rmSmoking,
+      rmSleepTime: post.rmSleepTime,
+      rmWakeUpTime: post.rmWakeUpTime,
+    }
+  });
 
-    const response = await fetch(`${API_BASE_URL}/post`, {
+  const response = await fetch(`http://boggle.is-an.ai/post`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer asdf`,
       },
       body: JSON.stringify({
         title: post.title,
         content: post.content,
         type: "PROJECT",
-        tags: post.tags || [],
+        tags: post.tags,
         maxParticipants: 5,
-        deadline: post.deadline || "2000-01-01",
+        deadline: post.deadline,
         imageUrls: post.imageUrls || [],
+      
         roommateDetails: {
-          age: post.myAge,
-          gender: post.myGender,
-          grade: post.myGrade,
-          room: post.myRoom,
-          semester: post.mySemester,
-          refrigerator: post.myRefrigerator,
-          wifi: post.myWifi,
-          snoring: post.mySnoring,
-          smoking: post.mySmoking,
-          sleepTime: post.mySleepTime,
-          wakeUpTime: post.myWakeUpTime,
-          mbti: post.myMbti,
+          age: post.age,
+          gender: post.gender,
+          grade: post.grade,
+          room: post.room,
+          semester: post.semester,
+          refrigerator: post.refrigerator,
+          wifi: post.wifi,
+          snoring: post.snoring,
+          smoking: post.smoking,
+          sleepTime: post.sleepTime,
+          wakeUpTime: post.wakeUpTime,
+          mbti: post.mbti,
           rmAge: post.rmAge,
+          rmGrade: post.rmGrade,
           rmRefrigerator: post.rmRefrigerator,
           rmWifi: post.rmWifi,
           rmSnoring: post.rmSnoring,
-          rmSmoking: post.rmSmoking
-        }
-      })
-    });
-
-    console.log('백엔드 응답 상태:', response.status);
-    console.log('백엔드 응답 헤더:', response.headers);
-
+          rmGrindingTeeth: post.rmGrindingTeeth,
+          rmSmoking: post.rmSmoking,
+          rmSleepTime: post.rmSleepTime,
+          rmWakeUpTime: post.rmWakeUpTime,
+          }
+        })
+      });
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('백엔드 에러 응답:', errorText);
-      throw new Error(`백엔드 에러: ${response.status} - ${errorText}`);
+      throw new Error('Failed to post');
     }
-
-    const responseData = await response.json();
-    console.log('백엔드 응답 데이터:', responseData);
-    console.log('응답 데이터 타입:', typeof responseData);
-    console.log('응답 데이터 키들:', Object.keys(responseData));
-
-    // response.data가 아니라 responseData를 반환
-    return responseData;
-    
-  } catch (error) {
-    console.error('createRoommatePost 에러:', error);
-    
-    // 네트워크 에러인 경우 더 명확한 메시지 표시
-    if (error.message === 'Failed to fetch') {
-      throw new Error('백엔드 서버에 연결할 수 없습니다. 서버가 실행 중인지 확인해주세요.');
-    }
-    
-    throw error;
-  }
+  return response.json();
 }
 
 function RouteComponent() {
@@ -115,31 +96,27 @@ function RouteComponent() {
     grade: '',
     age: '',
     mbti: '',
-    room: '',
     semester: '',
-    sleepStart: '21:00',
-    sleepEnd: '07:00',
-    refrigerator: '',
-    wifi: '',
+    room: '',
+    sleepTime: '',
+    wakeUpTime: '',
     snoring: '',
     teethGrinding: '',
     smoking: '',
-    other: '',
-    isCurrentlyResiding: false
+    refrigerator: '',
+    wifi: '',
+    content: '',
   });
 
   // 희망 룸메 프로필 데이터
-  const [desiredProfile, setDesiredProfile] = useState({
-    gender: '',
-    grade: '',
-    age: '',
-    mbti: '',
-    room: '',
-    semester: '',
-    refrigerator: '',
-    wifi: '',
-    snoring: '',
-    smoking: ''
+  const [rmProfile, setRmProfile] = useState({
+    rmGrade: '',
+    rmAge: '',
+    rmSleepTime: '',
+    rmWakeUpTime: '',
+    rmSnoring: '',
+    rmTeethGrinding: '',
+    rmSmoking: ''
   });
 
   //formData폼에 입력된 데이터를 담고 있는 객체, setFormData 폼 데이터를 업데이트 해주는 함수
@@ -150,8 +127,8 @@ function RouteComponent() {
     //gender값이 처음에는 ''였는데, 선택하면 setFormData에 의해 formData.gender="남자"로 바뀜
   };
 
-  const handleDesiredProfileChange = (field, value) => {
-    setDesiredProfile(prev => ({...prev, [field]: value}));
+  const handleRmProfileChange = (field, value) => {
+    setRmProfile(prev => ({...prev, [field]: value}));
   };
 
   const handleNextStep = () => {
@@ -175,28 +152,29 @@ function RouteComponent() {
         imageUrls: [],
         
         // 내 프로필
-        myAge: parseInt(myProfile.age) || 20,
-        myGender: myProfile.gender,
-        myGrade: myProfile.grade,
-        myRoom: myProfile.room,
-        mySemester: myProfile.semester,
-        myRefrigerator: myProfile.refrigerator === '있어요',
-        myWifi: myProfile.wifi === '있어요',
-        mySnoring: myProfile.snoring === '있어요',
-        mySmoking: myProfile.smoking === '해요',
-        mySleepTime: myProfile.sleepStart,
-        myWakeUpTime: myProfile.sleepEnd,
-        myMbti: myProfile.mbti,
+        age: post.age,
+        gender: post.gender,
+        grade: post.grade,
+        room: post.room,
+        semester: post.semester,
+        refrigerator: post.refrigerator,
+        wifi: post.wifi,
+        snoring: post.snoring,
+        smoking: post.smoking,
+        sleepTime: post.sleepTime,
+        wakeUpTime: post.wakeUpTime,
+        mbti: post.mbti,
+        content: post.content,
         
         // 희망 룸메 프로필
-        rmAge: parseInt(desiredProfile.age) || 20,
-        rmRefrigerator: desiredProfile.refrigerator === '있어요',
-        rmWifi: desiredProfile.wifi === '있어요',
-        rmSnoring: desiredProfile.snoring === '있어요',
-        rmSmoking: desiredProfile.smoking === '해요'
+        rmGrade: rmProfile.rmGrade,
+        rmAge: rmProfile.rmAge,
+        rmSleepTime: rmProfile.rmSleepTime,
+        rmWakeUpTime: rmProfile.rmWakeUpTime,
+        rmSnoring: rmProfile.rmSnoring,
+        rmTeethGrinding: rmProfile.rmTeethGrinding,
+        rmSmoking: rmProfile.rmSmoking,
       };
-      
-      console.log('전체 폼 데이터:', post);
       
       // 백엔드로 전송하고 응답 받기
       const response = await createRoommatePost(post);
@@ -233,7 +211,7 @@ function RouteComponent() {
   // 미리보기 데이터 생성
   const previewData = {
     myProfile,
-    desiredProfile
+    rmProfile
   };
 
   return (
@@ -664,8 +642,8 @@ function RouteComponent() {
                       학년<span className="text-[#ff0000] ml-[1px]">*</span>
                     </label>
                     <select
-                      value={desiredProfile.grade}
-                      onChange={(e) => handleDesiredProfileChange('grade', e.target.value)}
+                      value={rmProfile.rmGrade}
+                      onChange={(e) => handleRmProfileChange('rmGrade', e.target.value)}
                       className="
                         w-109 h-6 px-1 border border-[#7A7A7A] rounded-[5px] 
                         text-[#7A7A7A] text-xs"
@@ -685,8 +663,8 @@ function RouteComponent() {
                       나이<span className="text-[#ff0000] ml-[1px]">*</span>
                     </label>
                     <select
-                      value={desiredProfile.age}
-                      onChange={(e) => handleDesiredProfileChange('age', e.target.value)}
+                      value={rmProfile.rmAge}
+                      onChange={(e) => handleRmProfileChange('rmAge', e.target.value)}
                       className="
                         w-109 h-6 px-1 border border-[#7A7A7A] rounded-[5px] 
                         text-[#7A7A7A] text-xs
@@ -712,8 +690,8 @@ function RouteComponent() {
                       <img src="/post icons/moon.svg" alt="half-moon" className="w-4 h-4 mr-[3px]" />
                       <input 
                         type="text"
-                        value={desiredProfile.sleepStart}
-                        onChange={(e) => handleDesiredProfileChange('sleepStart', e.target.value)}
+                        value={rmProfile.rmSleepTime}
+                        onChange={(e) => handleRmProfileChange('rmSleepTime', e.target.value)}
                         placeholder="21:00"
                         className="w-full h-6 px-2 border border-[#7a7a7a] rounded-[5px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
@@ -723,8 +701,8 @@ function RouteComponent() {
                       <img src="/post icons/sun.svg" alt="half-moon" className="w-4 h-4 mr-[3px]" />
                       <input 
                         type="text"
-                        value={myProfile.sleepEnd}
-                        onChange={(e) => handleMyProfileChange('sleepEnd', e.target.value)}
+                        value={rmProfile.rmWakeUpTime}
+                        onChange={(e) => handleRmProfileChange('rmWakeUpTime', e.target.value)}
                         placeholder="07:00"
                         className="w-full h-6 px-2 text-[#7a7a7a] border border-[#7a7a7a] rounded-[5px] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
@@ -740,10 +718,10 @@ function RouteComponent() {
                       <label className="flex items-center text-sm text-[#7a7a7a]">
                         <input
                           type="radio"
-                          name="desiredSnoring"
+                          name="rmSnoring"
                           value="있어요"
-                          checked={desiredProfile.snoring === '있어요'}
-                          onChange={(e) => handleDesiredProfileChange('snoring', e.target.value)}
+                          checked={rmProfile.rmSnoring === '있어요'}
+                          onChange={(e) => handleRmProfileChange('rmSnoring', e.target.value)}
                           className="mr-2"
                         />
                         있어요
@@ -751,10 +729,10 @@ function RouteComponent() {
                       <label className="flex items-center text-sm text-[#7a7a7a]">
                         <input
                           type="radio"
-                          name="desiredSnoring"
+                          name="rmSnoring"
                           value="없어요"
-                          checked={desiredProfile.snoring === '없어요'}
-                          onChange={(e) => handleDesiredProfileChange('snoring', e.target.value)}
+                          checked={rmProfile.rmSnoring === '없어요'}
+                          onChange={(e) => handleRmProfileChange('rmSnoring', e.target.value)}
                           className="mr-2"
                         />
                         없어요
@@ -771,10 +749,10 @@ function RouteComponent() {
                       <label className="flex items-center text-sm text-[#7a7a7a]">
                         <input
                           type="radio"
-                          name="myTeethGrinding"
+                          name="rmTeethGrinding"
                           value="있어요"
-                          checked={myProfile.teethGrinding === '있어요'}
-                          onChange={(e) => handleMyProfileChange('teethGrinding', e.target.value)}
+                          checked={rmProfile.teethGrinding === '있어요'}
+                          onChange={(e) => handleRmProfileChange('rmTeethGrinding', e.target.value)}
                           className="mr-2"
                         />
                         있어요
@@ -782,10 +760,10 @@ function RouteComponent() {
                       <label className="flex items-center text-sm text-[#7a7a7a]">
                         <input
                           type="radio"
-                          name="desiredTeethGrinding"
+                          name="rmTeethGrinding"
                           value="없어요"
-                          checked={desiredProfile.teethGrinding === '없어요'}
-                          onChange={(e) => handleDesiredProfileChange('teethGrinding', e.target.value)}
+                          checked={rmProfile.rmTeethGrinding === '없어요'}
+                          onChange={(e) => handleRmProfileChange('rmTeethGrinding', e.target.value)}
                           className="mr-2"
                         />
                         없어요
@@ -802,10 +780,10 @@ function RouteComponent() {
                       <label className="flex items-center text-sm text-[#7a7a7a]">
                         <input
                           type="radio"
-                          name="desiredSmoking"
+                          name="rmSmoking"
                           value="해요"
-                          checked={desiredProfile.smoking === '해요'}
-                          onChange={(e) => handleDesiredProfileChange('smoking', e.target.value)}
+                          checked={rmProfile.rmSmoking === '해요'}
+                          onChange={(e) => handleRmProfileChange('rmSmoking', e.target.value)}
                           className="mr-2"
                         />
                         해요
@@ -813,10 +791,10 @@ function RouteComponent() {
                       <label className="flex items-center text-sm text-[#7a7a7a]">
                         <input
                           type="radio"
-                          name="desiredSmoking"
+                          name="rmSmoking"
                           value="안해요"
-                          checked={desiredProfile.smoking === '안해요'}
-                          onChange={(e) => handleDesiredProfileChange('smoking', e.target.value)}
+                          checked={rmProfile.rmSmoking === '안해요'}
+                          onChange={(e) => handleRmProfileChange('rmSmoking', e.target.value)}
                           className="mr-2"
                         />
                         안해요
@@ -902,12 +880,12 @@ function RouteComponent() {
                         <h2 className="text-l font-bold text-[#ad6dff] mb-3">희망 룸메 프로필</h2>
                         <div className="bg-[#eee1ff]/30 p-4 rounded-lg space-y-2">
                           <div className="flex flex-col w-[280px] gap-[5px]">
-                            <div><span className="text-sm font-semibold">학년:</span> {desiredProfile.grade || '-'}</div>
-                            <div><span className="text-sm font-semibold">나이:</span> {desiredProfile.age || '-'}</div>
-                            <div><span className="text-sm font-semibold">수면시간:</span> {desiredProfile.sleepStart} ~ {myProfile.sleepEnd}</div>
-                            <div><span className="text-sm font-semibold">코골이:</span> {desiredProfile.snoring || '-'}</div>
-                            <div><span className="text-sm font-semibold">이갈이:</span> {desiredProfile.teethGrinding || '-'}</div>
-                            <div><span className="text-sm font-semibold">흡연:</span> {desiredProfile.smoking || '-'}</div>
+                            <div><span className="text-sm font-semibold">학년:</span> {rmProfile.rmGrade || '-'}</div>
+                            <div><span className="text-sm font-semibold">나이:</span> {rmProfile.rmAge || '-'}</div>
+                            <div><span className="text-sm font-semibold">수면시간:</span> {rmProfile.rmSleepTime} ~ {rmProfile.rmWakeUpTime}</div>
+                            <div><span className="text-sm font-semibold">코골이:</span> {rmProfile.rmSnoring || '-'}</div>
+                            <div><span className="text-sm font-semibold">이갈이:</span> {rmProfile.rmTeethGrinding || '-'}</div>
+                            <div><span className="text-sm font-semibold">흡연:</span> {rmProfile.rmSmoking || '-'}</div>
                           </div>
                         </div>
                       </div>

@@ -19,38 +19,11 @@ export default function Header() {
 
   return (
     <header className="flex w-full items-center justify-between bg-white py-2 px-[10px] text-text">
-    
-      <div
-        className="
-          flex
-          items-center
-          gap-2
-          h-[39px]
-          min-w-[120px]
-          box-border
-        "
-      >
-        <img
-          src="/icons/boggle-logo.svg"
-          alt="BOGGLE logo"
-          className="
-            h-[24px]
-            w-[24px]
-            object-contain
-            block
-          "
-        />
-        <b
-          className="
-            font-normal
-            text-[24px]
-            leading-[1]
-            text-black
-          "
-        >
-          BOGGLE
-        </b>
-      </div>
+      <img 
+        src="/icons/boggle-logo.svg"
+        alt="BOGGLE logo"
+        className="h-[30px] pl-3 object-contain block"
+      />
 
       <div
         className="
