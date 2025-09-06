@@ -11,7 +11,9 @@ function RouteComponent() {
   const type = Route.useSearch().type;
   return (
     <Layout>
-      <CardList type={type} />
+      <div className="flex ml-[200px]">
+        <CardList type={type} />
+      </div>
     </Layout>
   );
 }

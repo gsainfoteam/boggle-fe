@@ -42,23 +42,8 @@ export default function Post() {
 
   return (
     <Layout>
-      <form
-        className="
-        max-w-[500px] 
-        mx-auto
-        flex 
-        flex-col 
-        gap-3.5
-      "
-      >
-        <div
-          className="
-        bg-gray-300
-        h-[250px]
-        w-full
-        rounded-[15px]
-      "
-        />
+      <form className="max-w-[500px] mx-auto flex flex-col gap-3.5">
+        <div className="bg-gray-300 h-[250px] w-full rounded-[15px]"/>
         <div>
           <h1
             className="
