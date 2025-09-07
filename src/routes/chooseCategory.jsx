@@ -15,10 +15,10 @@ function ChooseCategoryComponent() {
 //useState를 사용하여 상태관리. setType 함수를 통해 type 상태를 변경할 수 있음
   
   const categories = [
-    { id: 'ROOMMATE', name: '룸메이트', icon: "/category-icons/roommateW.svg"},
-    { id: 'STUDY', name: '스터디', icon: "/category-icons/studyB.svg"},
-    { id: 'GROUP_PURCHASE', name: '공동구매', icon: "/category-icons/shoppingcartB.svg"},
-    { id: 'OTHER', name: '/', icon: "/category-icons/deliveryvanB.svg"},
+    { id: 'ROOMMATE', name: '룸메이트', icon: "/category-icons/roommateB.svg", activeIcon: "/category-icons/roommateW.svg"},
+    { id: 'STUDY', name: '스터디', icon: "/category-icons/studyB.svg", activeIcon: "/category-icons/studyW.svg"},
+    { id: 'GROUP_PURCHASE', name: '공동구매', icon: "/category-icons/shoppingcartB.svg", activeIcon: "/category-icons/shoppingcartW.svg"},
+    { id: 'OTHER', name: '/', icon: "/category-icons/deliveryvanB.svg", activeIcon: "/category-icons/deliveryvanW.svg"},
   ];
 
   const handleCategorySelect = (categoryId) => {setType(categoryId);};
@@ -74,9 +74,9 @@ function ChooseCategoryComponent() {
             클릭하면 */}
               <div className="flex flex-col items-center justify-center"></div>
                 <img 
-                  src={category.icon}
+                  src={type === category.id ? category.activeIcon : category.icon}
                   alt={category.name}
-                  className="h-[40px] hover:invert-[41%] hover:sepia-[87%] hover:saturate-[3086%] hover:hue-rotate-[217deg] hover:brightness-[102%] hover:contrast-[101%];" 
+                  className="h-[40px]" 
                 />
               {/* 바로 위 div는 between으로 아이콘 배치 예쁘게 하기 위함. */}
               <span className="text-lg font-semibold">{category.name}</span>
